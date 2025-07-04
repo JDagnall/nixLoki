@@ -7,7 +7,7 @@ local ncUtil = require("nixCatsUtils")
 return {
 	"catppuccin/nvim",
 	name = "catppuccin",
-    enabled = ncUtil.enableForCategory("catppuccin", true),
+	enabled = ncUtil.enableForCategory("catppuccin", true),
 	priority = 1000,
 	opts = {
 		flavour = "mocha",
