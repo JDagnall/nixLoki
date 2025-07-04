@@ -18,8 +18,6 @@ inputs: let
         collate-grammars = true;
         # neovim-unwrapped = null; pin a specific nvim version
         # nvimSRC = null; # causes it to build from source
-
-
     };
     # enabled categories shared between loki nvim packages
     # All categories included must be marked true, but false may be omitted.
@@ -61,4 +59,4 @@ in {
         categories = loki_cats args // {};
         extra = loki_extra args // {};
     };
-}:
+}

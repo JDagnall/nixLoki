@@ -1,7 +1,11 @@
 -- lazyCat is a wrapper around lazy-nvim that passes information such as 
 -- plugin paths to lazy, on non nix systems is does nothing
 
-local ncUtil = require("NixCatsUtils")
+-- gives default values for nixCats functions in 
+-- require('nixCatsUtils').setup {
+--   non_nix_value = true,
+-- }
+local ncUtil = require("nixCatsUtils")
 
 local function getlockfilepath()
   if ncUtil.isNixCats and type(nixCats.settings.unwrappedCfgPath) == 'string' then
@@ -43,7 +47,7 @@ local lazyOptions = {
 
 -- NOTE: this the lazy wrapper. Use it like require('lazy').setup() but with an extra
 -- argument, the path to lazy.nvim as downloaded by nix, or nil, before the normal arguments.
-ncUtil.lazyCat.setup(
+require('nixCatsUtils.lazyCat').setup(
     nixCats.pawsible { 'allPlugins', 'start', 'lazy.nvim' }, 
     { -- spec
       { import = 'plugins' },

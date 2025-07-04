@@ -27,7 +27,7 @@
     ];
 
     categoryDefinitions = import ./cats.nix inputs;
-    packageDefinitions = import ./packages inputs;
+    packageDefinitions = import ./nvims.nix inputs;
     defaultPackageName = "nixLoki";
   in
   # see :help nixCats.flake.outputs.exports
