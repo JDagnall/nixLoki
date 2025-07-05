@@ -85,7 +85,7 @@ in
             # see :help nixCats.flake.outputs.settings
             settings = loki_settings args // {
                 # aliases may not conflict with your other packages.
-                aliases = [ "loki" ];
+                aliases = [ "loki" "nvim" ];
                 configDirName = "loki";
                 extraName = "nixLoki";
             };
