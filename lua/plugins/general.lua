@@ -2,19 +2,10 @@
 -- enableForCategory: checks a category specification in the nixCats nix config
 -- or returns the specified default value if not on a nix system
 local ncUtil = require("nixCatsUtils")
+-- TODO: find a way to manager nixCats enabling and disabling plugins in one place
 
 -- all one-liner / no config plugins go here
 return {
-	-- required for lazy.nvim and image.nvim
-	{
-		"vhyrro/luarocks.nvim",
-		priority = 1001, -- this plugin needs to run before anything else
-		opts = {
-			rocks = { "magick" },
-		},
-		config = true,
-		enabled = ncUtil.enableForCategory("luarocks", true),
-	},
 	-- surround text, Visual: s[char], Normal: cs[char][char], S[char]
 	{
 		"tpope/vim-surround",
@@ -46,25 +37,13 @@ return {
 	{
 		"willothy/wezterm.nvim",
 		config = true,
-		enabled = false,
-		enabled = ncUtil.enableForCategory("wezterm", true),
+		enabled = ncUtil.enableForCategory("wezterm", false),
 	},
 	-- netrw glow up
 	{
 		"prichrd/netrw.nvim",
-		opts = {},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		enabled = ncUtil.enableForCategory("netrw", true),
-	},
-	{
-		"RRethy/vim-illuminate",
-		config = function()
-			require("illuminate").configure({
-				modes_allowlist = { "n" },
-				providers = { "lsp" },
-			})
-		end,
-		enabled = ncUtil.enableForCategory("vim-illuminate", true),
 	},
 	-- {
 	-- "vuciv/golf",

@@ -1,8 +1,3 @@
-local ncUtil = require("nixCatsUtils")
--- nixCats utilites return default values if not on a nix system
--- enableForCategory: checks a category specification in the nixCats nix config
--- or returns the specified default value if not on a nix system
-
 -- function that formats each individual entry in the completion list
 local function format_entry(entry, item)
 	-- Define menu shorthand for different completion sources.
@@ -46,12 +41,13 @@ end
 -- completions for nvim
 return {
 	"hrsh7th/nvim-cmp",
+	enabled = require("nixCatsUtils").enableForCategory("cmp", true),
 	dependencies = {
+		-- all enabled under the same nixCat
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 	},
-	enabled = ncUtil.enableForCategory("cmp"),
 	init = function()
 		-- set the amount of items that can appear in the completion menu
 		vim.o.pumheight = 10

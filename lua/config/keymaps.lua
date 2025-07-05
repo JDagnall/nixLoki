@@ -45,6 +45,8 @@ vim.cmd("command! Wq wq")
 vim.cmd("command! WQ wq")
 vim.cmd("command! Wa wa")
 vim.cmd("command! WA wa")
+vim.cmd("command! Qa qa")
+vim.cmd("command! QA qa")
 -- insert newline above and below while in N mode
 vim.keymap.set("n", "nl", "o<Esc>")
 vim.keymap.set("n", "Nl", "O<Esc>")

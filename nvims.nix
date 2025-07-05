@@ -3,10 +3,8 @@ let
     inherit (inputs.nixCats) utils;
     # package settings shared between loki nvim packages
     loki_settings =
-        { pkgs, ... }@misc:
+        { ... }: # @misc
         {
-            extraName = "nixLoki";
-            configDirName = "loki";
             # unwrappedCfgPath = utils.mkLuaInline "(os.getenv('XDG_CONFIG_HOME') or '/home/james/.config') .. '/loki'";
             wrapRc = true;
             # whether runtime dependencies will overwrite existing dependencies or the inverse
@@ -27,11 +25,12 @@ let
     # This entire set is also passed to nixCats for querying within the lua.
     # see :help nixCats.flake.outputs.packageDefinitions
     loki_cats =
-        { pkgs, ... }@misc:
+        { ... }: # @misc
         {
             general = true;
             # plugins
             lualine.lualine = true;
+            lualine.harpoon = true;
             lualine.gitsigns = true;
             catppuccin = true;
             treesitter = true;
@@ -47,6 +46,16 @@ let
             web-devicons = true;
             netrw = true;
             vim-illuminate = true;
+            ts-autotag = true;
+            harpoon = true;
+            snacks = true;
+            autopairs = true;
+            smart-splits = true;
+            toggleterm = true;
+            iron = true;
+            undotree = true;
+            vim-fugitive = true;
+            yanky = true;
 
             # langs
             lang.lua = true;
@@ -59,7 +68,7 @@ let
         };
     # extra specifications shared between loki nvim packages
     loki_extra =
-        { pkgs, ... }@misc:
+        { ... }: # @misc
         {
             theme = "catppuccin";
         };
@@ -67,9 +76,9 @@ in
 {
     nixLoki =
         {
-            pkgs,
-            name,
-            mkPlugin,
+            # pkgs,
+            # name,
+            # mkPlugin,
             ...
         }@args:
         {
@@ -77,6 +86,8 @@ in
             settings = loki_settings args // {
                 # aliases may not conflict with your other packages.
                 aliases = [ "loki" ];
+                configDirName = "loki";
+                extraName = "nixLoki";
             };
             categories = loki_cats args // { };
             # things to pass to nvim that aren't categories
@@ -85,11 +96,18 @@ in
     # an extra test package with normal lua reload for fast edits
     # nix doesnt provide the config in this package, allowing free reign to edit it.
     testNixLoki =
-        { pkgs, mkPlugin, ... }@args:
+        {
+            # pkgs,
+            # name,
+            # mkPlugin,
+            ...
+        }@args:
         {
             settings = loki_settings args // {
                 wrapRc = false;
                 unwrappedCfgPath = utils.mkLuaInline "(os.getenv('XDG_CONFIG_HOME') or '/home/james/.config') .. '/testLoki'";
+                configDirName = "testLoki";
+                extraName = "testNixLoki";
             };
             categories = loki_cats args // { };
             extra = loki_extra args // { };

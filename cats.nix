@@ -1,17 +1,18 @@
 # see :help nixCats.flake.outputs
 inputs:
 let
-    inherit (inputs.nixCats) utils;
+    # inherit (inputs.nixCats) utils;
 in
 {
     pkgs,
-    settings,
-    categories,
-    extra,
-    name,
-    mkPlugin,
+    # settings,
+    # categories,
+    # extra,
+    # name,
+    # mkPlugin,
     ...
-}@packageDef:
+} # @packageDef
+:
 {
     # this section is for dependencies that should be available at RUN TIME
     lspsAndRuntimeDeps = with pkgs; {
@@ -23,6 +24,7 @@ in
             file
         ];
         treesitter = [ ];
+        snacks = [ chafa ];
         lang = {
             lua = [
                 lua-language-server
@@ -67,7 +69,8 @@ in
         lualine = {
             lualine = [ lualine-nvim ];
             harpoon = [
-                harpoon2
+                {plugin = harpoon2; name = "harpoon";}
+                pkgs.neovimPlugins.harpoon-lualine
                 plenary-nvim
             ];
             gitsigns = [ gitsigns-nvim ];
@@ -100,8 +103,9 @@ in
             nvim-web-devicons
         ];
         harpoon = [
-            harpoon2
-            plenary
+            # harpoon2
+            {plugin = harpoon2; name = "harpoon";}
+            plenary-nvim
             telescope-nvim
         ];
         vim-illuminate = [ vim-illuminate ];

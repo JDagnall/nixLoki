@@ -1,13 +1,8 @@
-local ncUtil = require("nixCatsUtils")
--- nixCats utilites return default values if not on a nix system
--- enableForCategory: checks a category specification in the nixCats nix config
--- or returns the specified default value if not on a nix system
-
 -- theme
 return {
 	"catppuccin/nvim",
 	name = "catppuccin",
-	enabled = ncUtil.enableForCategory("catppuccin", true),
+	enabled = require("nixCatsUtils").enableForCategory("catppuccin", true),
 	priority = 1000,
 	opts = {
 		flavour = "mocha",

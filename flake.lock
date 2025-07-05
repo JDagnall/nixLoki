@@ -31,10 +31,27 @@
         "type": "github"
       }
     },
+    "plugins-harpoon-lualine": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1751343777,
+        "narHash": "sha256-mVYk+mdTT+LW+5bwoJZoGYMu3GhUVppghVT8nf4depE=",
+        "owner": "letieu",
+        "repo": "harpoon-lualine",
+        "rev": "21b9d12f2a0b44e20566193f826c9d2ba6edef06",
+        "type": "github"
+      },
+      "original": {
+        "owner": "letieu",
+        "repo": "harpoon-lualine",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "nixCats": "nixCats",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "plugins-harpoon-lualine": "plugins-harpoon-lualine"
       }
     }
   },

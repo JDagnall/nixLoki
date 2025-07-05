@@ -78,7 +78,6 @@ return {
 			dependencies = {
 				{
 					"ThePrimeagen/harpoon",
-                    enabled = ncUtil.enableForCategory("lualine.harpoon", true),
 					branch = ncUtil.lazyAdd("harpoon2", nil),
 				},
 			},

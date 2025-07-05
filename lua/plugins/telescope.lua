@@ -1,10 +1,7 @@
-local ncUtil = require("nixCatsUtils")
--- nixCats utilites return default values if not on a nix system
--- enableForCategory: checks a category specification in the nixCats nix config
--- or returns the specified default value if not on a nix system
 return {
 	"nvim-telescope/telescope.nvim",
-	enabled = ncUtil.enableForCategory("telescope", true),
+	enabled = require("nixCatsUtils").enableForCategory("telescope", true),
+    lazy = false,
 	version = "*",
 	dependencies = {
 		-- all enabled under the same nixCat category
