@@ -7,37 +7,35 @@ local ncUtil = require("nixCatsUtils")
 
 -- syntax highlighting
 return {
-    'nvim-treesitter/nvim-treesitter',
-    enabled = ncUtil.enableForCategory("treesitter", true),
-    build = ncUtil.lazyAdd(':TSUpdate', nil),
-    config = function()
-        require("nvim-treesitter.configs").setup({
-            -- only if on a non-nix system, nix handles grammar installs
-            ensure_installed = ncUtil.lazyAdd({ "c", "python", "lua" }, {}), 
-            parser_install_dir = ncUtil.lazyAdd("/home/james/.local/share/nvim/lazy/nvim-treesitter", nil),
+	"nvim-treesitter/nvim-treesitter",
+	enabled = ncUtil.enableForCategory("treesitter", true),
+	build = ncUtil.lazyAdd(":TSUpdate", nil),
+	config = function()
+		require("nvim-treesitter.configs").setup({
+			-- only if on a non-nix system, nix handles grammar installs
+			ensure_installed = ncUtil.lazyAdd({ "c", "python", "lua" }, {}),
+			parser_install_dir = ncUtil.lazyAdd(vim.fn.stdpath("data") .. "/lazy/nvim-treesitter", nil),
 
-            -- Install parsers synchronously (only applied to `ensure_installed`)
-            sync_install = false,
+			-- Install parsers synchronously (only applied to `ensure_installed`)
+			sync_install = false,
 
-            -- Automatically install missing parsers when entering buffer
-            -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-            auto_install = not ncUtil.isNixCats,
+			-- Automatically install missing parsers when entering buffer
+			-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+			auto_install = not ncUtil.isNixCats,
 
-            highlight = {
-                enable = true,
+			highlight = {
+				enable = true,
 
-                -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-                -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-                -- Using this option may slow down your editor, and you may see some duplicate highlights.
-                -- Instead of true it can also be a list of languages
-                additional_vim_regex_highlighting = false,
-            },
+				-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+				-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+				-- Using this option may slow down your editor, and you may see some duplicate highlights.
+				-- Instead of true it can also be a list of languages
+				additional_vim_regex_highlighting = false,
+			},
 
-            indent = {
-                enable = true,
-            },
-
-
-        })
-    end,
+			indent = {
+				enable = true,
+			},
+		})
+	end,
 }

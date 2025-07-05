@@ -1,8 +1,17 @@
--- img file to use chafa to ascii art
-local img_file = vim.fn.stdpath("config") .. "/img/loki/1.jpg"
+local ncUtil = require("nixCatsUtils")
+
+local config_path = function ()
+    if ncUtil.isNixCats then
+        local nc = require("nixCats")
+        return nc.configDir -- get the nix store config path if using nixCats (non test package)
+    end
+    return vim.fn.stdpath("config")
+end
+-- img file to use chafa to ascii art there are 4 pictures in the directory
+local img_file = config_path .. "/img/loki/" .. math.random(4) .. ".jpg"
 return {
 	"folke/snacks.nvim",
-	enabled = require("nixCatsUtils").enableForCategory("snacks", true),
+	enabled = ncUtil.enableForCategory("snacks", true),
 	lazy = false,
 	priority = 999,
 	opts = {
