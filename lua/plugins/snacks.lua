@@ -1,14 +1,19 @@
 local ncUtil = require("nixCatsUtils")
 
-local get_config_path = function ()
-    if ncUtil.isNixCats then
-        local nc = require("nixCats")
-        return nc.configDir -- get the nix store config path if using nixCats (non test package)
-    end
-    return vim.fn.stdpath("config")
+local get_config_path = function()
+	if ncUtil.isNixCats then
+		local nc = require("nixCats")
+		return nc.configDir -- get the nix store config path if using nixCats (non test package)
+	end
+	return vim.fn.stdpath("config")
 end
 -- img file to use chafa to ascii art there are 4 pictures in the directory
-local img_file = get_config_path() .. "/img/loki/" .. math.random(4) .. ".jpg"
+-- ascii are is computed and saved in .ascii files because sometimes chafa can take a sec
+-- chafa is still listed as a dependency in nix incase you want to make more
+-- the chafa command is 'chafa -C true --symbols vhalf -f symbols -s 60x30 -O 9 --align left [img]'
+-- '--align left' is important
+local img_num = math.random(1, 4)
+local img_file = get_config_path() .. "/img/loki/" .. img_num .. ".ascii"
 return {
 	"folke/snacks.nvim",
 	enabled = ncUtil.enableForCategory("snacks", true),
@@ -68,7 +73,8 @@ return {
 			sections = {
 				{
 					section = "terminal",
-					cmd = "chafa -C true --symbols vhalf -f symbols -s 60x30 -O 9 " .. img_file .. "; sleep .1",
+					-- cmd = "chafa -C true --symbols vhalf -f symbols -s 60x30 -O 9 --align left " .. img_file .. "; sleep .1",
+					cmd = "cat " .. img_file .. "; sleep .1",
 					height = 30,
 					padding = 1,
 				},
