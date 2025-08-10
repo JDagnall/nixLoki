@@ -14,6 +14,16 @@ return {
 						format = common.bracketed_paste_python,
 						block_dividers = { "# %%", "#%%" },
 					},
+					hermes = {
+						command = { "docker", "exec", "-it", "hermes", "flask", "shell", "--no-autoindent" },
+						format = common.bracketed_paste_python,
+						block_dividers = { "# %%", "#%%" },
+					},
+					athena = {
+						command = { "docker", "exec", "-it", "athena", "flask", "shell", "--no-autoindent" },
+						format = common.bracketed_paste_python,
+						block_dividers = { "# %%", "#%%" },
+					},
 				},
 				repl_filetype = function(_, ft)
 					return ft
@@ -45,4 +55,5 @@ return {
 	keys = {
 		"<leader>R",
 	},
+	cmd = { "Iron", "IronAttach", "IronFocus" },
 }
