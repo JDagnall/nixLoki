@@ -10,6 +10,7 @@ local lsps = {
 	"clangd",
 	-- "ruff", -- i only want ruff as a formatter
 	"pylsp",
+	"tsserver",
 }
 
 -- nix cats categories corresponding to lsps
@@ -20,6 +21,7 @@ local lsp_cats = {
 	["clangd"] = "lang.c",
 	-- ["ruff"] = "lang.python",
 	["pylsp"] = "lang.python",
+	["tsserver"] = "lang.javascript",
 }
 
 local lsp_settings = {

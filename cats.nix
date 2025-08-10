@@ -24,7 +24,9 @@ in
             file
         ];
         treesitter = [ ];
-        snacks = [ chafa ];
+        snacks = [
+            # chafa
+        ];
         lang = {
             lua = [
                 lua-language-server
@@ -37,6 +39,7 @@ in
             nix = [
                 nixd
                 nixfmt-rfc-style
+                alejandra
             ];
             c = [ clang-tools ];
             python = [
@@ -46,6 +49,16 @@ in
             ];
             bash = [ shfmt ];
             jinja = [ djlint ];
+            css = [ prettier ];
+            html = [ prettier ];
+            toml = [ prettier ];
+            markdown = [ prettier ];
+            json = [ prettier ];
+            javascript = [
+                prettier
+                typescript-language-server
+            ];
+
         };
     };
 
@@ -69,7 +82,10 @@ in
         lualine = {
             lualine = [ lualine-nvim ];
             harpoon = [
-                {plugin = harpoon2; name = "harpoon";}
+                {
+                    plugin = harpoon2;
+                    name = "harpoon";
+                }
                 pkgs.neovimPlugins.harpoon-lualine
                 plenary-nvim
             ];
@@ -104,7 +120,10 @@ in
         ];
         harpoon = [
             # harpoon2
-            {plugin = harpoon2; name = "harpoon";}
+            {
+                plugin = harpoon2;
+                name = "harpoon";
+            }
             plenary-nvim
             telescope-nvim
         ];

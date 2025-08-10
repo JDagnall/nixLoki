@@ -12,12 +12,15 @@ return {
 	opts = {
 		automatic_installation = true,
 		ensure_installed = {
-			"clang-format",
+			-- formatters
 			"ruff",
 			"autopep8",
 			"stylua",
-			"djlint",
+			"nixfmt",
+			"clang-format",
 			"shfmt",
+			"djlint",
+			"prettier",
 		},
 	},
 }

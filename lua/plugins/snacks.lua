@@ -9,7 +9,6 @@ local get_config_path = function()
 end
 -- img file to use chafa to ascii art there are 4 pictures in the directory
 -- ascii are is computed and saved in .ascii files because sometimes chafa can take a sec
--- chafa is still listed as a dependency in nix incase you want to make more
 -- the chafa command is 'chafa -C true --symbols vhalf -f symbols -s 60x30 -O 9 --align left [img]'
 -- '--align left' is important
 local img_num = math.random(1, 4)

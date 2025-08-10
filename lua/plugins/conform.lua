@@ -3,47 +3,39 @@ local ncUtil = require("nixCatsUtils")
 -- enableForCategory: checks a category specification in the nixCats nix config
 -- or returns the specified default value if not on a nix system
 
-local formatters = {
-	"nixfmt",
-	"stylua",
-	"gofmt",
-	"clang-format",
-	"ruff", -- i only want ruff as a formatter
-	"autopep8",
-	"shfmt",
-	"djlint",
+local ft_by_formatter_and_cat = {
+	python = {
+		formatters = { "ruff_format", "ruff_fix", "autopep8" },
+		enabled = ncUtil.enableForCategory("lang.python", true),
+	},
+	lua = { formatters = { "stylua" }, enabled = ncUtil.enableForCategory("lang.python", true) },
+	nix = { formatters = { "nixfmt" }, enabled = ncUtil.enableForCategory("lang.nix", true) },
+	go = { formatters = { "gofmt" }, enabled = ncUtil.enableForCategory("lang.go", true) },
+	c = { formatters = { "clang-format" }, enabled = ncUtil.enableForCategory("lang.c", true) },
+	bash = { formatters = { "shfmt" }, enabled = ncUtil.enableForCategory("lang.bash", true) },
+	sh = { formatters = { "shfmt" }, enabled = ncUtil.enableForCategory("lang.bash", true) },
+	shell = { formatters = { "shfmt" }, enabled = ncUtil.enableForCategory("lang.bash", true) },
+	htmldjango = { formatters = { "djlint" }, enabled = ncUtil.enableForCategory("lang.jinja", true) },
+	css = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.css", true) },
+	html = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.html", true) },
+	toml = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.toml", true) },
+	markdown = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.markdown", true) },
+	json = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.json", true) },
+	javascript = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.javascript", true) },
 }
+local enabled_fts = {}
 
--- nix cats categories corresponding to formatters
-local formatter_cats = {
-	["nixfmt"] = "lang.nix",
-	["stylua"] = "lang.lua",
-	["gofmt"] = "lang.go",
-	["clang-format"] = "lang.c",
-	["ruff"] = "lang.python",
-	["autopep8"] = "lang.python",
-	["shfmt"] = "lang.bash",
-	["djlint"] = "lang.jinja",
-}
+for k, v in pairs(ft_by_formatter_and_cat) do
+	if v.enabled then
+		enabled_fts[k] = v.formatters
+	end
+end
 
 return {
 	"stevearc/conform.nvim",
 	enabled = ncUtil.enableForCategory("conform", true),
 	opts = {
-		-- TODO: make it so that nixCats is checked before formatters are included
-		formatters_by_ft = {
-			lua = { "stylua" },
-			python = { "autopep8", "ruff_format", "ruff_fix" },
-			nix = { "nixfmt" },
-			go = { "gofmt" },
-			c = { "clang-format" },
-			htmldjango = { "djlint" },
-			html = { "djlint" },
-			jango = { "djlint" },
-			bash = { "shfmt" },
-			sh = { "shfmt" },
-			shell = { "shfmt" },
-		},
+		formatters_by_ft = enabled_fts,
 		-- individual formatter options
 		formatters = {
 			nixfmt = {

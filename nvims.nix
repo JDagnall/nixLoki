@@ -65,6 +65,12 @@ let
             lang.python = true;
             lang.bash = true;
             lang.jinja = true;
+            lang.css = true;
+            lang.html = true;
+            lang.toml = true;
+            lang.markdown = true;
+            lang.javascript = true;
+            lang.json = true;
         };
     # extra specifications shared between loki nvim packages
     loki_extra =
@@ -85,7 +91,10 @@ in
             # see :help nixCats.flake.outputs.settings
             settings = loki_settings args // {
                 # aliases may not conflict with your other packages.
-                aliases = [ "loki" "nvim" ];
+                aliases = [
+                    "loki"
+                    "nvim"
+                ];
                 configDirName = "loki";
                 extraName = "nixLoki";
             };

@@ -13,10 +13,12 @@ return {
 			},
 		},
 		ensure_installed = {
-			"clangd",
-			"gopls",
-			"pylsp",
+			-- LSPS
 			"lua_ls",
+			"pylsp",
+			"gopls",
+			"clangd",
+			"tsserver",
 		},
 	},
 	config = function(_, opts)
