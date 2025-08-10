@@ -12,11 +12,10 @@ return {
 	dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
 	keys = function()
 		local harpoon = require("harpoon")
-		-- pcall(require("telescope").load_extension, "harpoon")
 		return {
 			{
 				mode = "n",
-				"<leader>a",
+				"<A-a>",
 				function()
 					harpoon:list():add()
 				end,
@@ -24,7 +23,7 @@ return {
 			},
 			{
 				mode = "n",
-				"<leader>r",
+				"<A-d>",
 				function()
 					harpoon:list():remove()
 				end,
@@ -32,21 +31,19 @@ return {
 			},
 			{
 				mode = "n",
-				"<C-S-h>",
-				function()
-					harpoon.ui:toggle_quick_menu(harpoon:list())
-				end,
-				desc = "View harppon list",
+				"<A-h>",
+				":HarpoonTelescope<CR>",
+				desc = "View harpoon telescope list",
 			},
-			-- {
-			-- 	mode = "n",
-			-- 	"<C-S-h>",
-			-- 	":Telescope harpoon",
-			-- 	desc = "View harppon list",
-			-- },
 			{
 				mode = "n",
-				"<C-,>",
+				"<A-H>",
+				":HarpoonList<CR>",
+				desc = "View harpoon editable list",
+			},
+			{
+				mode = "n",
+				"<A-,>",
 				function()
 					harpoon:list():prev()
 				end,
@@ -54,7 +51,7 @@ return {
 			},
 			{
 				mode = "n",
-				"<C-.>",
+				"<A-.>",
 				function()
 					harpoon:list():next()
 				end,
@@ -62,5 +59,36 @@ return {
 			},
 		}
 	end,
+	lazy = false,
 	opts = {},
+	config = function(_, opts)
+		local harpoon = require("harpoon")
+		harpoon.setup(opts)
+		vim.api.nvim_create_user_command("HarpoonList", function()
+			harpoon.ui:toggle_quick_menu(harpoon:list())
+		end, {})
+
+		-- basic telescope configuration
+		local telescope_conf = require("telescope.config").values
+		local function toggle_telescope(harpoon_files)
+			local file_paths = {}
+			for _, item in ipairs(harpoon_files.items) do
+				table.insert(file_paths, item.value)
+			end
+
+			require("telescope.pickers")
+				.new({}, {
+					prompt_title = "Harpoon",
+					finder = require("telescope.finders").new_table({
+						results = file_paths,
+					}),
+					previewer = telescope_conf.file_previewer({}),
+					sorter = telescope_conf.generic_sorter({}),
+				})
+				:find()
+		end
+		vim.api.nvim_create_user_command("HarpoonTelescope", function()
+			toggle_telescope(harpoon:list())
+		end, {})
+	end,
 }
