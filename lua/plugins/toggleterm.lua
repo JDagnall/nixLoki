@@ -7,7 +7,7 @@ return {
 	end,
 	opts = {
 		direction = "float", -- or tab or horizontal or vertical
-		open_mapping = [[<c-\>]], -- or [[<c-`>]]
+		open_mapping = [[<A-\>]], -- or [[<c-`>]]
 		start_in_insert = true,
 		persist_size = true,
 		persist_mode = true,
@@ -27,7 +27,6 @@ return {
 		},
 	},
 	keys = {
-		[[<c-\>]],
-		[[<c-`>]],
+		{ mode = "n", [[<A-\>]], ":ToggleTerm<CR>" },
 	},
 }
