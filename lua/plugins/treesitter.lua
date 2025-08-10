@@ -37,5 +37,25 @@ return {
 				enable = true,
 			},
 		})
+		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+		parser_config.jinja2 = {
+			install_info = {
+				url = "https://github.com/JDaggers/tree-sitter-embedded-jinja.git",
+				files = { "src/parser.c" },
+				branch = "main",
+				generate_requires_npm = false,
+				requires_generate_from_grammar = false,
+				queries = "queries",
+			},
+			-- filetype = "j2",
+		}
+		vim.treesitter.language.register("jinja2", "html.j2")
+		vim.treesitter.language.register("jinja2", "j2")
+		vim.filetype.add({
+			extension = {
+				["html.j2"] = "jinja2",
+				j2 = "jinja2",
+			},
+		})
 	end,
 }
