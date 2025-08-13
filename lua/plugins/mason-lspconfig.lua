@@ -18,7 +18,7 @@ return {
 			"pylsp",
 			"gopls",
 			"clangd",
-			"tsserver",
+			"ts_ls",
 		},
 	},
 	config = function(_, opts)
