@@ -11,6 +11,7 @@ local lsps = {
 	-- "ruff", -- i only want ruff as a formatter
 	"pylsp",
 	"tsserver",
+    "jsonls",
 }
 
 -- nix cats categories corresponding to lsps
@@ -22,6 +23,7 @@ local lsp_cats = {
 	-- ["ruff"] = "lang.python",
 	["pylsp"] = "lang.python",
 	["tsserver"] = "lang.javascript",
+    ["jsonls"] = "lang.json",
 }
 
 local lsp_settings = {
@@ -165,7 +167,7 @@ return {
 	config = function(_, opts)
 		vim.diagnostic.config(opts.diagnostics)
 		-- run configure_lsp for every lsp in list
-		capabilities = vim.lsp.protocol.make_client_capabilities()
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		if ncUtil.enableForCategory("cmp", true) then
 			capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 		end

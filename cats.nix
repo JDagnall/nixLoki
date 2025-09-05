@@ -53,7 +53,10 @@ in
             html = [ prettier ];
             toml = [ prettier ];
             markdown = [ prettier ];
-            json = [ prettier ];
+            json = [
+                prettier
+                vscode-json-languageserver
+            ];
             javascript = [
                 prettier
                 typescript-language-server

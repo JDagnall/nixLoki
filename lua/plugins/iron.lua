@@ -41,7 +41,6 @@ return {
 				send_until_cursor = "<leader>ru",
 				send_mark = "<leader>rm",
 				send_code_block = "<leader>rb",
-				send_code_block_and_move = "<leader>rn",
 				mark_motion = "<leader>mc",
 				mark_visual = "<leader>mc",
 				remove_mark = "<leader>md",

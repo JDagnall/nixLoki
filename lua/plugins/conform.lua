@@ -9,7 +9,7 @@ local ft_by_formatter_and_cat = {
 		enabled = ncUtil.enableForCategory("lang.python", true),
 	},
 	lua = { formatters = { "stylua" }, enabled = ncUtil.enableForCategory("lang.python", true) },
-	nix = { formatters = { "nixfmt" }, enabled = ncUtil.enableForCategory("lang.nix", true) },
+	nix = { formatters = { "alejandra" }, enabled = ncUtil.enableForCategory("lang.nix", true) },
 	go = { formatters = { "gofmt" }, enabled = ncUtil.enableForCategory("lang.go", true) },
 	c = { formatters = { "clang-format" }, enabled = ncUtil.enableForCategory("lang.c", true) },
 	bash = { formatters = { "shfmt" }, enabled = ncUtil.enableForCategory("lang.bash", true) },
