@@ -8,8 +8,8 @@ local lsps = {
 	"lua_ls",
 	"gopls",
 	"clangd",
-	-- "ruff", -- i only want ruff as a formatter
-	"pylsp",
+	"ruff",
+	"pyright",
 	"tsserver",
     "jsonls",
 }
@@ -20,8 +20,9 @@ local lsp_cats = {
 	["lua_ls"] = "lang.lua",
 	["gopls"] = "lang.go",
 	["clangd"] = "lang.c",
-	-- ["ruff"] = "lang.python",
-	["pylsp"] = "lang.python",
+	["ruff"] = "lang.python",
+	["pyright"] = "lang.python",
+	-- ["pylsp"] = "lang.python",
 	["tsserver"] = "lang.javascript",
     ["jsonls"] = "lang.json",
 }
