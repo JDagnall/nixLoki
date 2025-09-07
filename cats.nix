@@ -45,7 +45,8 @@ in
 					ruff
 					python312Packages.autopep8
 					# python312Packages.python-lsp-server
-					pyright
+					# pyright
+                    python312Packages.jedi-language-server
 				];
 				bash = [shfmt];
 				jinja = [djlint];

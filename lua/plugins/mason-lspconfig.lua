@@ -9,13 +9,14 @@ return {
 	opts = {
 		automatic_enable = {
 			exclude = {
-				"ruff", -- I only want ruff as a formatter
+				-- "ruff", -- I only want ruff as a formatter
 			},
 		},
 		ensure_installed = {
 			-- LSPS
 			"lua_ls",
-			"pylsp",
+			"jedi_language_server",
+            "ruff",
 			"gopls",
 			"clangd",
 			"ts_ls",

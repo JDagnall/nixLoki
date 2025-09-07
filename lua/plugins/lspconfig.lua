@@ -9,7 +9,7 @@ local lsps = {
 	"gopls",
 	"clangd",
 	"ruff",
-	"pyright",
+	"jedi_language_server",
 	"tsserver",
     "jsonls",
 }
@@ -21,7 +21,8 @@ local lsp_cats = {
 	["gopls"] = "lang.go",
 	["clangd"] = "lang.c",
 	["ruff"] = "lang.python",
-	["pyright"] = "lang.python",
+	["jedi_language_server"] = "lang.python",
+	-- ["pyright"] = "lang.python",
 	-- ["pylsp"] = "lang.python",
 	["tsserver"] = "lang.javascript",
     ["jsonls"] = "lang.json",
