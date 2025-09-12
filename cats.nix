@@ -43,7 +43,6 @@ in
 				c = [clang-tools];
 				python = [
 					ruff
-					python312Packages.autopep8
 					# python312Packages.python-lsp-server
 					# pyright
                     python312Packages.jedi-language-server
