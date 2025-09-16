@@ -44,6 +44,7 @@ return {
 		"prichrd/netrw.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		enabled = ncUtil.enableForCategory("netrw", true),
+        opts = {},
 	},
 	-- {
 	-- "vuciv/golf",
