@@ -10,7 +10,7 @@ local lsps = {
 	"clangd",
 	"ruff",
 	"jedi_language_server",
-	"tsserver",
+	"ts_ls",
 	"jsonls",
 }
 
@@ -24,7 +24,7 @@ local lsp_cats = {
 	["jedi_language_server"] = "lang.python",
 	-- ["pyright"] = "lang.python",
 	-- ["pylsp"] = "lang.python",
-	["tsserver"] = "lang.javascript",
+	["ts_ls"] = "lang.javascript",
 	["jsonls"] = "lang.json",
 }
 
