@@ -45,7 +45,7 @@ local function configure_lsp(lsp, capabilities)
 	end
 	vim.lsp.config(lsp, {
 		capabilities = capabilities,
-		settings = lsp_settings[lsp] or nil,
+		settings = lsp_settings[lsp] or {},
 	})
 	vim.lsp.enable(lsp)
 end
