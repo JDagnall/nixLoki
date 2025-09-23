@@ -1,7 +1,7 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	enabled = require("nixCatsUtils").enableForCategory("telescope", true),
-    lazy = false,
+	lazy = false,
 	version = "*",
 	dependencies = {
 		-- all enabled under the same nixCat category
@@ -31,6 +31,29 @@ return {
 				"<leader>t",
 				":Telescope builtin include_extensions=true<CR>",
 				desc = "Search through all telescope pickers",
+			},
+			-- LSP bindings with telescope
+			{
+				mode = "n",
+				"<leader>f",
+				function()
+					builtin.lsp_document_symbols({ symbols = { "Function", "Method" } })
+				end,
+				desc = "find functions in the current file",
+			},
+			{
+				mode = "n",
+				"<leader>F",
+				function()
+					builtin.lsp_workspace_symbols({ symbols = { "Function", "Method" } })
+				end,
+				desc = "find functions in the current workspace",
+			},
+			{
+				mode = "n",
+				"<leader>gr",
+				builtin.lsp_references,
+				desc = "find functions in the current workspace",
 			},
 		}
 	end,

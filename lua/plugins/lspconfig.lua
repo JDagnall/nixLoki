@@ -11,7 +11,7 @@ local lsps = {
 	"ruff",
 	"jedi_language_server",
 	"tsserver",
-    "jsonls",
+	"jsonls",
 }
 
 -- nix cats categories corresponding to lsps
@@ -25,7 +25,7 @@ local lsp_cats = {
 	-- ["pyright"] = "lang.python",
 	-- ["pylsp"] = "lang.python",
 	["tsserver"] = "lang.javascript",
-    ["jsonls"] = "lang.json",
+	["jsonls"] = "lang.json",
 }
 
 local lsp_settings = {
@@ -78,7 +78,7 @@ return {
 			},
 			{
 				mode = "n",
-				"[d",
+				"]d",
 				function()
 					vim.diagnostic.goto_next()
 				end,
@@ -86,7 +86,7 @@ return {
 			},
 			{
 				mode = "n",
-				"]d",
+				"[d",
 				function()
 					vim.diagnostic.goto_prev()
 				end,
@@ -108,9 +108,6 @@ return {
 				end,
 				options,
 			},
-			-- disable the default format keybinding because nvim-conform uses it
-			{ mode = "n", "<leader>f", nil },
-
 			-- toggle reference list of hovered symbol
 			{
 				mode = "n",
