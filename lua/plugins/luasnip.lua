@@ -24,11 +24,12 @@ end $0
 return {
 	"L3MON4D3/LuaSnip",
 	lazy = false,
-	enable = require("nixCatsUtils").enableForCategory("luasnip", true),
+	enabled = require("nixCatsUtils").enableForCategory("luasnip", true),
 	config = function()
 		local ls = require("luasnip")
 		local s = ls.snippet
-		local lua_print_table_snip = s("print_table", lua_print_table)
+		local fmt = require("luasnip.extras.fmt").fmt
+		local lua_print_table_snip = s("print_table", fmt(lua_print_table))
 		ls.add_snippets("lua", { lua_print_table_snip })
 		ls.setup()
 	end,

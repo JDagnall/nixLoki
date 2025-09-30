@@ -57,6 +57,15 @@ return {
 	end,
 	opts = function()
 		local cmp = require("cmp")
+		local sources = {
+			{ name = "nvim_lsp" },
+			{ name = "buffer" },
+			{ name = "path" },
+		}
+		if require("nixCatsUtils").enableForCategory("luasnip", true) then
+			table.insert(sources, { name = "luasnip" })
+		end
+
 		return {
 			-- disable completion in certain contexts
 			enabled = function()
@@ -78,11 +87,7 @@ return {
 				keyword_length = 1,
 				completeopt = "menu,menuone,noinsert",
 			},
-			sources = {
-				{ name = "nvim_lsp" },
-				{ name = "buffer" },
-				{ name = "path" },
-			},
+			sources = sources,
 			mapping = {
 				["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
 				["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),

@@ -6,7 +6,7 @@ vim.keymap.set({ "i", "s" }, "<C-c>", function()
 	if vim.snippet then
 		vim.snippet.stop()
 	end
-	return "<ESC>"
+	vim.cmd("stopinsert")
 end)
 -- run packer.lua
 -- vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/james/packer.lua<CR>");
