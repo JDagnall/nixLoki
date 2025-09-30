@@ -170,7 +170,12 @@ in
 				nvim-notify
 				nui-nvim
 			];
-			luasnip = [luasnip];
+			luasnip = [
+				{
+					plugin = luasnip;
+					name = "luaSnip";
+				}
+			];
 		};
 
 		# lazy doesnt care if these are in startupPlugins or optionalPlugins
