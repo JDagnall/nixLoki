@@ -11,14 +11,10 @@
 		# If you want your plugin to be loaded by the standard overlay,
 		# i.e. if it wasnt on nixpkgs, but doesnt have an extra build step.
 
-		# because this input which does not have a nixpkg is named
+		# any input which does not have a nixpkg is named
 		# "plugins-<name>" it will be overlayed on
 		# nixpkgs.neovimPlugins by the nixCats.utils.standardPluginOverlay
 		# function below
-		plugins-harpoon-lualine = {
-			url = "github:letieu/harpoon-lualine";
-			flake = false;
-		};
 	};
 
 	# see :help nixCats.flake.outputs

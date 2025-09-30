@@ -1,8 +1,13 @@
 vim.g.mapleader = " "
 -- go to file explore
 vim.keymap.set("n", "<leader>pv", vim.cmd.Lex)
--- exit insert
-vim.keymap.set("i", "<C-c>", "<Esc>")
+-- exit insert, also just makes sure snippet highlighting stops
+vim.keymap.set({ "i", "s" }, "<C-c>", function()
+	if vim.snippet then
+		vim.snippet.stop()
+	end
+	return "<ESC>"
+end)
 -- run packer.lua
 -- vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/james/packer.lua<CR>");
 -- source the file

@@ -26,7 +26,11 @@ local gitsigns_diff = {
 	},
 }
 
-local gitsigns_branch = { "b:gitsigns_head", icon = " " }
+local gitsigns_branch = {
+	"b:gitsigns_head",
+	icon = " ",
+	max_length = vim.o.columns / 3,
+}
 
 local EOL_format = {
 	"fileformat",
@@ -52,12 +56,6 @@ local filename = {
 	},
 }
 
-local harpoon = {
-	"harpoon2",
-	icon = "󰀱 ",
-	no_harpoon = "",
-}
-
 local diagnostics = {
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
@@ -70,22 +68,12 @@ local diagnostics = {
 
 return {
 	"nvim-lualine/lualine.nvim",
-    enabled = ncUtil.enableForCategory("lualine", true),
+	enabled = ncUtil.enableForCategory("lualine", true),
 	dependencies = {
-		{
-			"letieu/harpoon-lualine",
-            enabled = ncUtil.enableForCategory("lualine.harpoon", true),
-			dependencies = {
-				{
-					"ThePrimeagen/harpoon",
-					branch = ncUtil.lazyAdd("harpoon2", nil),
-				},
-			},
-		},
 		{
 			-- Allows displaying git blames among other things
 			"lewis6991/gitsigns.nvim",
-            enabled = ncUtil.enableForCategory("lualine.gitsigns", true),
+			enabled = ncUtil.enableForCategory("lualine.gitsigns", true),
 			opts = {
 				signs_staged_enable = true,
 				signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
@@ -114,9 +102,6 @@ return {
 				filename,
 				diagnostics,
 			},
-			lualine_x = ncUtil.enableForCategory("lualine.harpoon", true) and {
-				harpoon,
-			} or {},
 			lualine_y = {
 				{ "lsp_status" },
 				{ "filetype" },

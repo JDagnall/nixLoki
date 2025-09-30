@@ -45,7 +45,7 @@ in
 					ruff
 					# python312Packages.python-lsp-server
 					# pyright
-                    python312Packages.jedi-language-server
+					python312Packages.jedi-language-server
 				];
 				bash = [shfmt];
 				jinja = [djlint];
@@ -83,14 +83,6 @@ in
 			];
 			lualine = {
 				lualine = [lualine-nvim];
-				harpoon = [
-					{
-						plugin = harpoon2;
-						name = "harpoon";
-					}
-					pkgs.neovimPlugins.harpoon-lualine
-					plenary-nvim
-				];
 				gitsigns = [gitsigns-nvim];
 			};
 			conform = [conform-nvim];
@@ -178,6 +170,7 @@ in
 				nvim-notify
 				nui-nvim
 			];
+			luasnip = [luasnip];
 		};
 
 		# lazy doesnt care if these are in startupPlugins or optionalPlugins
