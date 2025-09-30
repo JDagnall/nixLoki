@@ -55,7 +55,7 @@ inputs: let
 		undotree = true;
 		vim-fugitive = true;
 		yanky = true;
-		luansip = true;
+		luasnip = true;
 
 		# langs
 		lang.lua = true;
