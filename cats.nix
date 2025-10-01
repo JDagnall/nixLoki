@@ -25,6 +25,7 @@ in
 			treesitter = [];
 			snacks = [
 				# chafa
+				delta
 			];
 			lang = {
 				lua = [

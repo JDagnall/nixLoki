@@ -172,8 +172,8 @@ return {
 			},
 			previewers = {
 				diff = {
-					builtin = true,
-					-- cmd = { "delta" }
+					builtin = false,
+					cmd = { "delta", "--file-decoration-style", "none", "--hunk-header-decoration-style", "none" },
 				},
 				git = {
 					builtin = true,
