@@ -151,7 +151,6 @@ in
 			vim-fugitive = [vim-fugitive];
 			yanky = [
 				yanky-nvim
-				telescope-nvim
 			];
 			dashboard = [
 				dashboard-nvim

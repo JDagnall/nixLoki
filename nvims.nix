@@ -54,7 +54,7 @@ inputs: let
 		iron = true;
 		undotree = true;
 		vim-fugitive = true;
-		yanky = false;
+		yanky = true;
 		luasnip = true;
 
 		# langs

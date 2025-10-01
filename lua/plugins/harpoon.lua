@@ -69,9 +69,9 @@ return {
 		end, {})
 
 		-- basic telescope configuration
-		local telescope_conf = require("telescope.config").values
 		if vim.g.telescope_enabled then
-			local function toggle_telescope(harpoon_files)
+			local telescope_conf = require("telescope.config").values
+			local function telescope_picker(harpoon_files)
 				local file_paths = {}
 				for _, item in ipairs(harpoon_files.items) do
 					table.insert(file_paths, item.value)
@@ -89,11 +89,25 @@ return {
 					:find()
 			end
 			vim.api.nvim_create_user_command("HarpoonPicker", function()
-				toggle_telescope(harpoon:list())
+				telescope_picker(harpoon:list())
 			end, {})
 		elseif vim.g.snacks_picker_enabled then
+			local function snacks_picker()
+				local function get_harpoon_files()
+					local items = {}
+					for _, item in ipairs(harpoon:list().items) do
+						table.insert(items, {
+							text = item.value,
+							file = item.value,
+						})
+					end
+					return items
+				end
+
+				require("snacks").picker({ finder = get_harpoon_files, title = "Harpoon" })
+			end
 			vim.api.nvim_create_user_command("HarpoonPicker", function()
-				print("No picker currently configured")
+				snacks_picker()
 			end, {})
 		else
 			vim.api.nvim_create_user_command("HarpoonPicker", function()

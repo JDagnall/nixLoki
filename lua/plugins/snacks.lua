@@ -196,11 +196,21 @@ return {
 			win = {
 				input = {
 					keys = {
-						-- ["<C-c>"] = {}
+						["<C-c>"] = { "cancel", mode = { "i", "n" } },
+						["<C-U>"] = { "preview_scroll_up", mode = { "i", "n" } },
+						["<C-D>"] = { "preview_scroll_down", mode = { "i", "n" } },
+						["<C-H>"] = { "preview_scroll_left", mode = { "i", "n" } },
+						["<C-J>"] = { "preview_scroll_down", mode = { "i", "n" } },
+						["<C-K>"] = { "preview_scroll_up", mode = { "i", "n" } },
+						["<C-L>"] = { "preview_scroll_right", mode = { "i", "n" } },
 					},
 				},
 				list = {
-					keys = {},
+					keys = {
+						["<C-c>"] = { "cancel", mode = { "i", "n" } },
+						-- ["<C-U>"] = { "preview_scroll_up", mode = { "i", "n" } },
+						-- ["<C-D>"] = { "preview_scroll_down", mode = { "i", "n" } },
+					},
 				},
 			},
 		},
@@ -241,15 +251,26 @@ return {
 				desc = "Find Git Files",
 			},
 			{
-				"<C-y>",
+				"<leader>gd",
 				function()
-					Snacks.picker.cliphist()
+					Snacks.picker.git_diff()
 				end,
-				desc = "System clip history",
+				desc = "Git Diff (Hunks)",
 			},
-			-- { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
-			-- { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
-			-- { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+			{
+				"<leader>gb",
+				function()
+					Snacks.picker.git_branches()
+				end,
+				desc = "Git Branches",
+			},
+			{
+				"<leader>gl",
+				function()
+					Snacks.picker.git_log()
+				end,
+				desc = "Git Log",
+			},
 			{
 				"gr",
 				function()
