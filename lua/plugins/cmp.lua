@@ -47,6 +47,7 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
+		"saadparwaiz1/cmp_luasnip",
 	},
 	init = function()
 		-- set the amount of items that can appear in the completion menu
@@ -62,8 +63,15 @@ return {
 			{ name = "buffer" },
 			{ name = "path" },
 		}
+		local snippet = {}
 		if require("nixCatsUtils").enableForCategory("luasnip", true) then
+			local ls = require("luasnip")
 			table.insert(sources, { name = "luasnip" })
+			snippet = {
+				expand = function(args)
+					ls.lsp_expand(args.body)
+				end,
+			}
 		end
 
 		return {
@@ -87,7 +95,8 @@ return {
 				keyword_length = 1,
 				completeopt = "menu,menuone,noinsert",
 			},
-			sources = sources,
+			sources = cmp.config.sources(sources),
+			snippet = snippet,
 			mapping = {
 				["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
 				["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),

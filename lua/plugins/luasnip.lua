@@ -18,19 +18,42 @@ local function print_table(table, opts)
 		end
 	end
 	print(string.rep("\t", indent), "}")
-end $0
+end
 ]]
+-- split into list of lines
+local lua_print_table_lines = {}
+for line in lua_print_table:gmatch("([^\r\n]*)[\r\n]*") do
+	table.insert(lua_print_table_lines, line)
+end
 
 return {
 	"L3MON4D3/LuaSnip",
+	name = "luasnip",
 	lazy = false,
 	enabled = require("nixCatsUtils").enableForCategory("luasnip", true),
 	config = function()
 		local ls = require("luasnip")
 		local s = ls.snippet
-		local fmt = require("luasnip.extras.fmt").fmt
-		local lua_print_table_snip = s("print_table", fmt(lua_print_table))
+		local t = ls.text_node
+		local lua_print_table_snip = s({ trig = "print_table" }, { t(lua_print_table_lines) })
 		ls.add_snippets("lua", { lua_print_table_snip })
 		ls.setup()
+	end,
+	keys = function()
+		local ls = require("luasnip")
+		return {
+			{
+				mode = "i",
+				"<Tab>",
+				function()
+					if ls.expand_or_jumpable() then
+						ls.expand_or_jump()
+					else
+						local key = vim.api.nvim_replace_termcodes("<Tab>", true, false, true)
+						vim.api.nvim_feedkeys(key, "n", true)
+					end
+				end,
+			},
+		}
 	end,
 }

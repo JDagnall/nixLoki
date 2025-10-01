@@ -102,6 +102,7 @@ return {
 				filename,
 				diagnostics,
 			},
+			lualine_x = {},
 			lualine_y = {
 				{ "lsp_status" },
 				{ "filetype" },

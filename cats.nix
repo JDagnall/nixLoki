@@ -133,6 +133,7 @@ in
 				cmp-path
 				cmp-buffer
 				cmp-nvim-lsp
+				cmp_luasnip
 			];
 			comment = [
 				{
@@ -171,10 +172,7 @@ in
 				nui-nvim
 			];
 			luasnip = [
-				{
-					plugin = luasnip;
-					name = "luaSnip";
-				}
+				luasnip
 			];
 		};
 
