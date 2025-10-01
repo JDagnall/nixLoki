@@ -28,5 +28,5 @@ return {
 			end)
 		end
 	end,
-	keys = {},
+	keys = { "<C-y>" },
 }
