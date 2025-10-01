@@ -1,6 +1,7 @@
+vim.g.telescope_enabled = require("nixCatsUtils").enableForCategory("telescope", false)
 return {
 	"nvim-telescope/telescope.nvim",
-	enabled = require("nixCatsUtils").enableForCategory("telescope", true),
+	enabled = vim.g.telescope_enabled,
 	lazy = false,
 	version = "*",
 	dependencies = {

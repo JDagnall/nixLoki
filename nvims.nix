@@ -37,7 +37,7 @@ inputs: let
 		conform = true;
 		trouble = true;
 		cmp = true;
-		telescope = true;
+		telescope = false;
 		mini-indentscope = true;
 		vim-surround = true;
 		transparent = true;
@@ -54,7 +54,7 @@ inputs: let
 		iron = true;
 		undotree = true;
 		vim-fugitive = true;
-		yanky = true;
+		yanky = false;
 		luasnip = true;
 
 		# langs

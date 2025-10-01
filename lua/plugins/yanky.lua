@@ -1,6 +1,6 @@
 return {
 	"gbprod/yanky.nvim",
-	enabled = require("nixCatsUtils").enableForCategory("yanky", true),
+	enabled = require("nixCatsUtils").enableForCategory("yanky", false),
 	lazy = true,
 	dependencies = { "nvim-telescope/telescope.nvim" },
 	opts = {

@@ -119,7 +119,6 @@ in
 					name = "harpoon";
 				}
 				plenary-nvim
-				telescope-nvim
 			];
 			vim-illuminate = [vim-illuminate];
 			netrw = [
