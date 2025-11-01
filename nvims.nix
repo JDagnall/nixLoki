@@ -61,6 +61,8 @@ inputs: let
 		lang.lua = true;
 		lang.nix = true;
 		lang.go = true;
+		lang.rust = true;
+		lang.zig = true;
 		lang.c = true;
 		lang.python = true;
 		lang.bash = true;

@@ -36,6 +36,8 @@ in
 					gopls
 					go
 				];
+				zig = [zig zls];
+				rust = [rustfmt rust-analyzer];
 				nix = [
 					nixd
 					nixfmt-rfc-style
