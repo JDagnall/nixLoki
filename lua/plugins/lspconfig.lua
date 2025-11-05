@@ -12,7 +12,7 @@ local lsps = {
 	"jedi_language_server",
 	"ts_ls",
 	"jsonls",
-	"rust-analyzer",
+	"rust_analyzer",
 	"zls",
 }
 
@@ -28,7 +28,7 @@ local lsp_cats = {
 	-- ["pylsp"] = "lang.python",
 	["ts_ls"] = "lang.javascript",
 	["jsonls"] = "lang.json",
-	["rust-analyzer"] = "lang.rust",
+	["rust_analyzer"] = "lang.rust",
 	["zls"] = "lang.zig",
 }
 
