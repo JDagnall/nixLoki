@@ -83,7 +83,15 @@ return {
 	},
 	opts = {
 		options = {
-			theme = "catppuccin",
+			theme = function()
+				if ncUtil.enableForCategory("cattpuccin", true) then
+					return "cattpuccin"
+				elseif ncUtil.enableForCategory("tinted-nvim") then
+					return "base16"
+				else
+					return "auto"
+				end
+			end,
 			component_separators = { left = "", right = "" },
 			section_separators = { right = "", left = "" },
 			globalstatus = true,

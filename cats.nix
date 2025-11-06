@@ -103,6 +103,9 @@ in
 					name = "mini.base16";
 				}
 			];
+			tinted-nvim = [
+				tinted-nvim
+			];
 			mini-indentscope = [
 				# sometimes you have to fix some names
 				{

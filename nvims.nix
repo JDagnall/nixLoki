@@ -33,6 +33,7 @@ inputs: let
 		lualine.gitsigns = true;
 		catppuccin = true;
 		mini-base16 = false;
+		tinted-nvim = false;
 		treesitter = true;
 		lspconfig = true;
 		conform = true;
@@ -79,7 +80,7 @@ inputs: let
 	loki_extra = {...}:
 	# @misc
 	{
-		theme = "catppuccin";
+		# theme = "";
 	};
 in {
 	nixLoki = {
