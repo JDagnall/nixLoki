@@ -3,8 +3,6 @@ local ncUtil = require("nixCatsUtils")
 -- enableForCategory: checks a category specification in the nixCats nix config
 -- or returns the specified default value if not on a nix system
 
-local colors = require("catppuccin.palettes")
-
 local function diff_source()
 	local gitsigns = vim.b.gitsigns_status_dict
 	if gitsigns then

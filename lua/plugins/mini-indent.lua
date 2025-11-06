@@ -1,6 +1,6 @@
 -- Indent lines
 return {
-	"echasnovski/mini.indentscope",
+	"nvim-mini/mini.indentscope",
 	enabled = require("nixCatsUtils").enableForCategory("mini-indentscope", true),
 	version = false,
 	opts = {

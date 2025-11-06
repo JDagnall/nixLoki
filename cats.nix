@@ -96,6 +96,13 @@ in
 					name = "catppuccin";
 				}
 			];
+			mini-base16 = [
+				# sometimes you have to fix some names
+				{
+					plugin = mini-base16;
+					name = "mini.base16";
+				}
+			];
 			mini-indentscope = [
 				# sometimes you have to fix some names
 				{
