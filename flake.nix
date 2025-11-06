@@ -85,7 +85,8 @@
 				# we also export a nixos module to allow reconfiguration from configuration.nix
 				nixosModule =
 					utils.mkNixosModules {
-						moduleNamespace = [defaultPackageName];
+						# where the config will be placed in the namespace
+						moduleNamespace = ["programs" defaultPackageName];
 						inherit
 							defaultPackageName
 							dependencyOverlays
@@ -99,7 +100,8 @@
 				# and the same for home manager
 				homeModule =
 					utils.mkHomeModules {
-						moduleNamespace = [defaultPackageName];
+						# where the config will be placed in the namespace
+						moduleNamespace = ["programs" defaultPackageName];
 						inherit
 							defaultPackageName
 							dependencyOverlays
