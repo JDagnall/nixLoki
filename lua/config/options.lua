@@ -45,17 +45,17 @@ vim.filetype.add({
 
 -- if the clipboard command cannot be found, and clip.exe + powershell.exe is present then use it
 if vim.g.clipboard == nil and vim.fn.executable("clip.exe") == 1 and vim.fn.executable("powershell.exe") then
-    vim.g.clipboard = {
-        name = "clip.exe",
-        copy = {
-            ['+'] = "clip.exe",
-            ['*'] = "clip.exe",
-        },
-        paste = {
-            ['+'] = "powershell.exe -c Get-Clipboard",
-            ['*'] = "powershell.exe -c Get-Clipboard",
-        },
-    }
+	vim.g.clipboard = {
+		name = "clip.exe",
+		copy = {
+			["+"] = "clip.exe",
+			["*"] = "clip.exe",
+		},
+		paste = {
+			["+"] = "powershell.exe -c Get-Clipboard",
+			["*"] = "powershell.exe -c Get-Clipboard",
+		},
+	}
 end
 
 -- netrw options '%' creates a file 'R' renames / moves a file,

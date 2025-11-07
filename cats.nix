@@ -85,7 +85,10 @@ in
 				# ))
 			];
 			lualine = {
-				lualine = [lualine-nvim];
+				lualine = [
+					lualine-nvim
+					nvim-web-devicons
+				];
 				gitsigns = [gitsigns-nvim];
 			};
 			conform = [conform-nvim];
@@ -171,7 +174,10 @@ in
 			];
 			feline = [nvim-web-devicons]; # is not in nix, diabled anyway, could use git call to get it
 			molten = [molten-nvim];
-			wezterm = [wezterm-nvim];
+			wezterm = [
+				wezterm-nvim
+				nvim-web-devicons
+			];
 			image = [
 				image-nvim
 				rocks-nvim

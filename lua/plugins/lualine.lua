@@ -80,6 +80,7 @@ return {
 				word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
 			},
 		},
+		"nvim-tree/nvim-web-devicons",
 	},
 	opts = {
 		options = {

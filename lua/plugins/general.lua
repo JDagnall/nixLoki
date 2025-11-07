@@ -33,18 +33,12 @@ return {
 		"christoomey/vim-tmux-navigator",
 		enabled = ncUtil.enableForCategory("vim-tmux-navigator", false),
 	},
-	-- Wezterm image provider
-	{
-		"willothy/wezterm.nvim",
-		config = true,
-		enabled = ncUtil.enableForCategory("wezterm", false),
-	},
 	-- netrw glow up
 	{
 		"prichrd/netrw.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		enabled = ncUtil.enableForCategory("netrw", true),
-        opts = {},
+		opts = {},
 	},
 	-- {
 	-- "vuciv/golf",

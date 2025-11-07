@@ -55,6 +55,7 @@ inputs: let
 		vim-fugitive = true;
 		yanky = true;
 		luasnip = true;
+		wezterm = true;
 
 		# langs
 		lang.lua = true;
