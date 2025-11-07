@@ -25,31 +25,25 @@ return {
 		},
 	},
 	config = function(_, opts)
-		local colours = nixCats.extra("base16Colours") or {}
-		require("tinted-theming").setup(colours, opts)
+		local colours = nixCats.extra("base16Colours") or "base16-catppuccin-mocha"
+		require("tinted-colorscheme").setup(colours, opts)
 
-		-- -- command line
-		-- vim.api.nvim_set_hl(0, "MsgArea", { fg = nil, bg = colours.base00 })
-		-- vim.api.nvim_set_hl(0, "MoreMsg", { fg = nil, bg = colours.base00 })
-		-- vim.api.nvim_set_hl(0, "ModeMsg", { fg = nil, bg = colours.base00 })
-		-- vim.api.nvim_set_hl(0, "MsgSeparator", { fg = nil, bg = colours.base00 })
-		-- -- nvim-cmp completion highlights
-		-- vim.api.nvim_set_hl(0, "CmpNormal", { fg = nil, bg = colours.base01 })
-		-- vim.api.nvim_set_hl(0, "CmpSel", { fg = nil, bg = colours.base02 })
-		-- vim.api.nvim_set_hl(0, "DocNormal", { fg = nil, bg = colours.base01 })
-		-- vim.api.nvim_set_hl(0, "SearchBar", { fg = nil, bg = colours.base02 })
-		-- -- Line numbers
-		-- vim.api.nvim_set_hl(0, "LineNr", { fg = colours.base04, bg = "none" })
-		-- vim.api.nvim_set_hl(0, "LineNrAbove", { fg = colours.base04, bg = "none" })
-		-- vim.api.nvim_set_hl(0, "LineNrBelow", { fg = colours.base04, bg = "none" })
-		-- -- trouble
+		-- redefine incase we fell back to catppuccin
+		colours = require("tinted-colorscheme").colors
+
+		-- command line
+		vim.api.nvim_set_hl(0, "MoreMsg", { fg = nil, bg = colours.base01 })
+		vim.api.nvim_set_hl(0, "MsgArea", { fg = nil, bg = colours.base01 })
+		vim.api.nvim_set_hl(0, "ModeMsg", { fg = nil, bg = colours.base01 })
+		vim.api.nvim_set_hl(0, "MsgSeparator", { fg = nil, bg = colours.base01 })
+		-- nvim-cmp completion highlights
+		vim.api.nvim_set_hl(0, "CmpNormal", { fg = nil, bg = colours.base01 })
+		vim.api.nvim_set_hl(0, "CmpSel", { fg = nil, bg = colours.base02 })
+		vim.api.nvim_set_hl(0, "CmpItemAbbr", { fg = nil, bg = nil })
+		vim.api.nvim_set_hl(0, "CmpDocumentation", { fg = nil, bg = colours.base01 })
+		vim.api.nvim_set_hl(0, "SearchBar", { fg = nil, bg = colours.base02 })
+		-- trouble
 		-- vim.api.nvim_set_hl(0, "TroubleNormal", { fg = nil, bg = "none" })
 		-- vim.api.nvim_set_hl(0, "TroubleNormalNC", { fg = nil, bg = "none" })
-		-- -- lualine, cant really work with mini-base16
-		-- -- gitsigns
-		-- vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = colours.base0B, bg = "none" })
-		-- vim.api.nvim_set_hl(0, "GitSignsChange", { fg = colours.base0E, bg = "none" })
-		-- vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = colours.base08, bg = "none" })
-		-- vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = colours.base0D, bg = "none" })
 	end,
 }

@@ -31,9 +31,6 @@ inputs: let
 		lualine.lualine = true;
 		lualine.harpoon = true;
 		lualine.gitsigns = true;
-		catppuccin = true;
-		mini-base16 = false;
-		tinted-nvim = false;
 		treesitter = true;
 		lspconfig = true;
 		conform = true;
