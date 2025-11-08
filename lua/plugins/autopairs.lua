@@ -25,23 +25,24 @@ return {
 		end
 
 		-- Add brackets on completion of function or method
-		cmp.event:on(
-			"confirm_done",
-			cmp_autopairs.on_confirm_done({
-				filetypes = {
-					-- "*" is a alias to all filetypes
-					["*"] = {
-						["("] = {
-							kind = {
-								cmp.lsp.CompletionItemKind.Function,
-								cmp.lsp.CompletionItemKind.Method,
-							},
-							handler = handlers["*"],
-						},
-					},
-				},
-			})
-		)
+		-- disabled as this may be more annoying than not
+		-- cmp.event:on(
+		-- 	"confirm_done",
+		-- 	cmp_autopairs.on_confirm_done({
+		-- 		filetypes = {
+		-- 			-- "*" is a alias to all filetypes
+		-- 			["*"] = {
+		-- 				["("] = {
+		-- 					kind = {
+		-- 						cmp.lsp.CompletionItemKind.Function,
+		-- 						cmp.lsp.CompletionItemKind.Method,
+		-- 					},
+		-- 					handler = handlers["*"],
+		-- 				},
+		-- 			},
+		-- 		},
+		-- 	})
+		-- )
 
 		-- Add '{<space>|}' -> {<space>|<space>} + the deletion action
 		local brackets = { { "(", ")" }, { "[", "]" }, { "{", "}" } }

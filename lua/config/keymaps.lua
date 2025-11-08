@@ -20,6 +20,7 @@ vim.keymap.set("n", "<leader>q", "<C-w>q")
 vim.keymap.set("n", "<leader>w", "<C-w>")
 -- nope
 vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "q", "<nop>")
 -- move highlighted text
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

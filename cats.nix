@@ -84,13 +84,11 @@ in
 				#   ]
 				# ))
 			];
-			lualine = {
-				lualine = [
-					lualine-nvim
-					nvim-web-devicons
-				];
-				gitsigns = [gitsigns-nvim];
-			};
+			lualine = [
+				lualine-nvim
+				nvim-web-devicons
+				gitsigns-nvim
+			];
 			conform = [conform-nvim];
 			catppuccin = [
 				# sometimes you have to fix some names

@@ -28,9 +28,7 @@ inputs: let
 	{
 		general = true;
 		# plugins
-		lualine.lualine = true;
-		lualine.harpoon = true;
-		lualine.gitsigns = true;
+		lualine = true;
 		treesitter = true;
 		lspconfig = true;
 		conform = true;
@@ -56,6 +54,7 @@ inputs: let
 		yanky = true;
 		luasnip = true;
 		wezterm = true;
+		gitsigns = true;
 
 		# langs
 		lang.lua = true;

@@ -68,18 +68,7 @@ return {
 	"nvim-lualine/lualine.nvim",
 	enabled = ncUtil.enableForCategory("lualine", true),
 	dependencies = {
-		{
-			-- Allows displaying git blames among other things
-			"lewis6991/gitsigns.nvim",
-			enabled = ncUtil.enableForCategory("lualine.gitsigns", true),
-			opts = {
-				signs_staged_enable = true,
-				signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-				numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
-				linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
-				word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
-			},
-		},
+		"lewis6991/gitsigns.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
 	opts = {
