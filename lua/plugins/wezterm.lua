@@ -21,18 +21,32 @@ return {
 		vim.api.nvim_create_autocmd({ "BufEnter" }, {
 			callback = function()
 				local current_pane_id = wezterm.get_current_pane()
-				local pane = wezterm.list_panes()[current_pane_id]
+				local panes = wezterm.list_panes()
+				local pane = nil
+				for _, p in pairs(panes) do
+					if p.pane_id == current_pane_id then
+						pane = p
+					end
+				end
+				if pane == nil then
+					return
+				end
 				local filetype_icon = require("nvim-web-devicons").get_icon_by_filetype(vim.bo.filetype)
+				if filetype_icon == nil then
+					filetype_icon = ""
+				end
 				-- expand('%') expands to the the filename
+				-- tab_id plus one may (probably) wont work well, but wezterm CLI is not exposing tab_index for some reason
 				wezterm.set_tab_title(
 					" "
-						.. pane.tab_id
-						.. ": "
+						-- .. pane.tab_id + 1
+						-- .. ": "
 						.. basename(pane.cwd)
 						.. " | "
 						.. filetype_icon
 						.. " "
-						.. vim.fn.expand("%")
+						.. basename(vim.api.nvim_buf_get_name(0))
+						.. " "
 				)
 			end,
 		})
