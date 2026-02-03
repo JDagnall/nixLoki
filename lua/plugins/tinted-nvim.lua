@@ -31,6 +31,8 @@ return {
 		-- redefine incase we fell back to catppuccin
 		colours = require("tinted-colorscheme").colors
 
+		-- variables, I hate them being red
+		vim.api.nvim_set_hl(0, "TSVariable", { fg = nil, bg = colours.base07 })
 		-- command line
 		vim.api.nvim_set_hl(0, "MoreMsg", { fg = nil, bg = colours.base01 })
 		vim.api.nvim_set_hl(0, "MsgArea", { fg = nil, bg = colours.base01 })
