@@ -15,17 +15,22 @@ in
 	: {
 		# this section is for dependencies that should be available at RUN TIME
 		lspsAndRuntimeDeps = with pkgs; {
-			general = [];
+			general = [
+				lua5_1
+			];
 			telescope = [
 				ripgrep
 				# fd
 				# gnumake # dont actually need unless planning to build fzf-native
 				file
 			];
-			treesitter = [];
+			treesitter = [
+				tree-sitter # needed for the tree-sitter-cli
+			];
 			snacks = [
 				# chafa
 				delta
+				imagemagick_light
 			];
 			lang = {
 				lua = [
