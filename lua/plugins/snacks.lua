@@ -19,7 +19,7 @@ return {
 	"folke/snacks.nvim",
 	enabled = ncUtil.enableForCategory("snacks", true),
 	lazy = false,
-	priority = 999,
+	priority = 1000,
 	opts = {
 		dashboard = {
 			enabled = true,
