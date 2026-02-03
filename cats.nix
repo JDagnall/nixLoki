@@ -40,7 +40,7 @@ in
 				rust = [rustfmt rust-analyzer];
 				nix = [
 					nixd
-					nixfmt-rfc-style
+					nixfmt
 					alejandra
 				];
 				c = [clang-tools];
