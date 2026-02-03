@@ -42,13 +42,14 @@ return {
 					return
 				end
 
-				if not treesitter_try_attach(buf, language) then
-					if vim.tbl_contains(installable_parsers, language) then
-						-- not already installed, so try to install them via nvim-treesitter if possible
-						require("nvim-treesitter").install(language):await(function()
-							treesitter_try_attach(buf, language)
-						end)
-					end
+				if vim.tbl_contains((plugin.opts or {}).runtime_installed_parsers or {}, language) then
+					-- if a parser was specified to be installed by nvim-treesitter, install it and then enable it.
+					require("nvim-treesitter").install(language):await(function()
+						treesitter_try_attach(buf, language)
+					end)
+				else
+					-- otherwise, assume they were installed via nix and try to enable treesitter features
+					treesitter_try_attach(buf, language)
 				end
 			end,
 		})
