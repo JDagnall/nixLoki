@@ -11,7 +11,7 @@ return {
 	enabled = ncUtil.enableForCategory("treesitter", true),
 	build = ncUtil.lazyAdd(":TSUpdate", nil),
 	config = function()
-		require("nvim-treesitter.configs").setup({
+		require("nvim-treesitter").setup({
 			-- only if on a non-nix system, nix handles grammar installs
 			ensure_installed = ncUtil.lazyAdd({ "c", "python", "lua" }, {}),
 			parser_install_dir = ncUtil.lazyAdd(vim.fn.stdpath("data") .. "/lazy/nvim-treesitter", nil),
@@ -37,8 +37,7 @@ return {
 				enable = true,
 			},
 		})
-		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-		parser_config.jinja2 = {
+		require("nvim-treesitter.parsers").jinja2 = {
 			install_info = {
 				url = "https://github.com/JDaggers/tree-sitter-embedded-jinja.git",
 				files = { "src/parser.c" },
