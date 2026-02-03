@@ -48,7 +48,8 @@ in
 					ruff
 					# python312Packages.python-lsp-server
 					# pyright
-					python312Packages.jedi-language-server
+					# python312Packages.jedi-language-server
+					basedpyright
 				];
 				bash = [shfmt];
 				jinja = [djlint];
