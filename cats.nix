@@ -30,7 +30,7 @@ in
 			snacks = [
 				# chafa
 				delta
-				imagemagick_light
+				imagemagick
 			];
 			lang = {
 				lua = [
@@ -81,6 +81,7 @@ in
 			];
 			treesitter = [
 				nvim-treesitter-textobjects
+				# can install all grammars
 				nvim-treesitter.withAllGrammars
 				# if you only want some of the grammars
 				# (nvim-treesitter.withPlugins (

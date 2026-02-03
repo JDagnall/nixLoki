@@ -10,7 +10,8 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	enabled = ncUtil.enableForCategory("treesitter", true),
 	build = ncUtil.lazyAdd(":TSUpdate", nil),
-	config = function(_, opts)
+	lazy = false,
+	after = function(plugin)
 		---@param buf integer
 		---@param language string
 		local function treesitter_try_attach(buf, language)
@@ -41,19 +42,18 @@ return {
 				if not language then
 					return
 				end
-
-				if vim.tbl_contains((plugin.opts or {}).runtime_installed_parsers or {}, language) then
-					-- if a parser was specified to be installed by nvim-treesitter, install it and then enable it.
-					require("nvim-treesitter").install(language):await(function()
-						treesitter_try_attach(buf, language)
-					end)
-				else
-					-- otherwise, assume they were installed via nix and try to enable treesitter features
-					treesitter_try_attach(buf, language)
+				if not treesitter_try_attach(buf, language) then
+					if vim.tbl_contains(installable_parsers, language) then
+						-- not already "installed" so try to register with nvim-treesitter
+						require("nvim-treesitter").install(language):await(function()
+							treesitter_try_attach(buf, language)
+						end)
+					end
 				end
 			end,
 		})
-
+	end,
+	config = function(_, opts)
 		require("nvim-treesitter").setup({
 			-- only if on a non-nix system, nix handles grammar installs
 			ensure_installed = ncUtil.lazyAdd({ "c", "python", "lua" }, {}),
