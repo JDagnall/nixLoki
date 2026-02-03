@@ -32,7 +32,9 @@ return {
 		colours = require("tinted-colorscheme").colors
 
 		-- variables, I hate them being red
-		vim.api.nvim_set_hl(0, "TSVariable", { fg = nil, bg = colours.base07 })
+		vim.api.nvim_set_hl(0, "TSVariable", { fg = colours.base07, bg = nil })
+		vim.api.nvim_set_hl(0, "TSVariableBuiltin", { fg = colours.base07, bg = nil })
+		vim.api.nvim_set_hl(0, "Identifier", { fg = colours.base07, bg = nil })
 		-- command line
 		vim.api.nvim_set_hl(0, "MoreMsg", { fg = nil, bg = colours.base01 })
 		vim.api.nvim_set_hl(0, "MsgArea", { fg = nil, bg = colours.base01 })
