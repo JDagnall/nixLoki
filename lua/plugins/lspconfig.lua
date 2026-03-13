@@ -39,12 +39,30 @@ local lsp_cats = {
 
 local lsp_settings = {
 	["lua_ls"] = {
-		Lua = {
-			diagnostics = {
-				globals = { "vim", "require" },
+		settings = {
+			Lua = {
+				diagnostics = {
+					globals = { "vim", "require", "bufnr" },
+				},
 			},
 		},
 	},
+	["clangd"] = function()
+		-- this is mostly for specifying a query driver among other things
+		-- specific to an environment
+		local extra_flags = os.getenv("CLANGD_EXTRA_FLAGS")
+		local clangd_cmd = {
+			"clangd",
+		}
+		if extra_flags then
+			for flag in string.gmatch(extra_flags, "%S+") do
+				table.insert(clangd_cmd, flag)
+			end
+		end
+		return {
+			cmd = clangd_cmd,
+		}
+	end,
 }
 
 local function configure_lsp(lsp, capabilities)
@@ -52,10 +70,12 @@ local function configure_lsp(lsp, capabilities)
 	if lsp_cats[lsp] ~= nil and not ncUtil.enableForCategory(lsp_cats[lsp], true) then
 		return
 	end
-	vim.lsp.config(lsp, {
-		capabilities = capabilities,
-		settings = lsp_settings[lsp] or {},
-	})
+	local settings = lsp_settings[lsp] or {}
+	if type(settings) == "function" then
+		settings = lsp_settings[lsp]()
+	end
+	settings.capabilities = capabilities
+	vim.lsp.config(lsp, settings)
 	vim.lsp.enable(lsp)
 end
 
