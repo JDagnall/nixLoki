@@ -22,6 +22,7 @@ return {
 	{
 		"numToStr/Comment.nvim",
 		enabled = ncUtil.enableForCategory("comment", true),
+		opts = {},
 	},
 	{
 		"nvim-tree/nvim-web-devicons",
