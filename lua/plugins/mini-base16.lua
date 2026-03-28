@@ -38,6 +38,9 @@ return {
 		require("mini.base16").setup(opts)
 
 		local colours = nixCats.extra("base16Colours")
+		if colours == nil then
+			colours = mocha
+		end
 
 		-- command line
 		vim.api.nvim_set_hl(0, "MsgArea", { fg = nil, bg = colours.base00 })
@@ -62,5 +65,8 @@ return {
 		vim.api.nvim_set_hl(0, "GitSignsChange", { fg = colours.base0E, bg = "none" })
 		vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = colours.base08, bg = "none" })
 		vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = colours.base0D, bg = "none" })
+		-- snacks picker
+		-- stop directory path component from being too dark
+		vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = colours.base03, bg = nil })
 	end,
 }
