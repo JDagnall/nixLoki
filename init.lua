@@ -9,5 +9,6 @@ local ncUtil = require("nixCatsUtils")
 vim.g.mapleader = " "
 
 require("config.options")
+require("config.ftplugin")
 require("config.keymaps")
 require("config.lazy-cat")

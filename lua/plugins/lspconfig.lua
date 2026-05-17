@@ -18,6 +18,7 @@ local lsps = {
 	"jsonls",
 	"rust_analyzer",
 	"zls",
+	"harper_ls",
 }
 
 -- nix cats categories corresponding to lsps
@@ -35,6 +36,7 @@ local lsp_cats = {
 	["jsonls"] = "lang.json",
 	["rust_analyzer"] = "lang.rust",
 	["zls"] = "lang.zig",
+	["harper_ls"] = "lang.english",
 }
 
 local lsp_settings = {
@@ -46,6 +48,9 @@ local lsp_settings = {
 				},
 			},
 		},
+	},
+	["harper_ls"] = {
+		filetypes = { "markdown", "text" },
 	},
 	["clangd"] = function()
 		-- this is mostly for specifying a query driver among other things

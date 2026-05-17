@@ -70,6 +70,9 @@ in
 					prettier
 					typescript-language-server
 				];
+				english = [
+					harper
+				];
 			};
 		};
 

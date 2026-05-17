@@ -72,6 +72,7 @@ inputs: let
 		lang.markdown = true;
 		lang.javascript = true;
 		lang.json = true;
+		lang.english = true;
 	};
 	# extra specifications shared between loki nvim packages
 	loki_extra = {...}:
