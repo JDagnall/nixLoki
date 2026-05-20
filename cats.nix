@@ -199,6 +199,12 @@ in
 			luasnip = [
 				luasnip
 			];
+			tree-sitter-language-injection = [
+				{
+					plugin = pkgs.neovimPlugins.tree-sitter-language-injection; # because this is retrieved as an input not a nixpkg
+					name = "tree-sitter-language-injection.nvim";
+				}
+			];
 		};
 
 		# lazy doesnt care if these are in startupPlugins or optionalPlugins

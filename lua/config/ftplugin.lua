@@ -10,10 +10,11 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		vim.opt_local.wrap = true
 		vim.opt_local.linebreak = true
 		vim.opt_local.textwidth = 90
+		-- no auto insertnig line breaks
+		vim.opt_local.formatoptions:remove("t")
 		-- vim.opt_local.wrapmargin = 5
-		vim.keymap.set({ "n", "v" }, "h", "gh", { buffer = true })
+		-- move on visual not logical lines
 		vim.keymap.set({ "n", "v" }, "j", "gj", { buffer = true })
 		vim.keymap.set({ "n", "v" }, "k", "gk", { buffer = true })
-		vim.keymap.set({ "n", "v" }, "l", "gl", { buffer = true })
 	end,
 })

@@ -20,7 +20,7 @@ local ft_by_formatter_and_cat = {
 	htmldjango = { formatters = { "djlint" }, enabled = ncUtil.enableForCategory("lang.jinja", true) },
 	css = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.css", true) },
 	html = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.html", true) },
-	toml = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.toml", true) },
+	-- toml = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.toml", true) }, -- prettier doesnt actually do toml
 	markdown = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.markdown", true) },
 	json = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.json", true) },
 	javascript = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.javascript", true) },

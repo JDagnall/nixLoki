@@ -51,6 +51,11 @@ local lsp_settings = {
 	},
 	["harper_ls"] = {
 		filetypes = { "markdown", "text" },
+		settings = {
+			["harper-ls"] = {
+				dialect = "Australian",
+			},
+		},
 	},
 	["clangd"] = function()
 		-- this is mostly for specifying a query driver among other things
