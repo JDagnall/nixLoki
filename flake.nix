@@ -15,10 +15,6 @@
 		# "plugins-<name>" it will be overlayed on
 		# nixpkgs.neovimPlugins by the nixCats.utils.standardPluginOverlay
 		# function below
-		plugins-tree-sitter-language-injection = {
-			url = "github:dariuscorvus/tree-sitter-language-injection.nvim";
-			flake = false;
-		};
 	};
 
 	# see :help nixCats.flake.outputs

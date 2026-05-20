@@ -55,7 +55,6 @@ inputs: let
 		luasnip = true;
 		wezterm = true;
 		gitsigns = true;
-		tree-sitter-language-injection = true;
 
 		# langs
 		lang.lua = true;

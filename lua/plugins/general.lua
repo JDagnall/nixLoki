@@ -41,12 +41,6 @@ return {
 		enabled = ncUtil.enableForCategory("netrw", true),
 		opts = {},
 	},
-	-- language syntax highlighting inject by adding comment
-	{
-		"dariuscorvus/tree-sitter-language-injection.nvim",
-		enabled = ncUtil.enableForCategory("tree-sitter-language-injection", true),
-		opts = {},
-	},
 	-- {
 	-- "vuciv/golf",
 	-- enabled = ncUtil.enableForCategory("golf", false),
