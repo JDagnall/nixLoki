@@ -31,27 +31,10 @@
         "type": "github"
       }
     },
-    "plugins-tree-sitter-language-injection": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1754158226,
-        "narHash": "sha256-/oqleaE2CGXAx7YTz4fEDv4CtuyAWt2CfSwTZ+wvqNw=",
-        "owner": "dariuscorvus",
-        "repo": "tree-sitter-language-injection.nvim",
-        "rev": "5f5b962232d189017d040a55eee623daf486b393",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dariuscorvus",
-        "repo": "tree-sitter-language-injection.nvim",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "nixCats": "nixCats",
-        "nixpkgs": "nixpkgs",
-        "plugins-tree-sitter-language-injection": "plugins-tree-sitter-language-injection"
+        "nixpkgs": "nixpkgs"
       }
     }
   },
