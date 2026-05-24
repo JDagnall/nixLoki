@@ -37,15 +37,27 @@ return {
 				end
 				-- expand('%') expands to the the filename
 				-- tab_id plus one may (probably) wont work well, but wezterm CLI is not exposing tab_index for some reason
+				-- i set my tab max width to 32
+				local half_tab_length = 12 -- after whitespace
+				local directory_name = basename(pane.cwd)
+				local file_name = basename(vim.api.nvim_buf_get_name(0))
+				local directory_name_len = math.min(#directory_name, half_tab_length)
+				local file_name_len = math.min(#file_name, half_tab_length)
+				if file_name_len < half_tab_length then
+					directory_name_len = math.min(directory_name_len + (half_tab_length - #file_name), #directory_name)
+				end
+				if directory_name_len < half_tab_length then
+					file_name_len = math.min(file_name_len + (half_tab_length - #directory_name), #file_name)
+				end
 				wezterm.set_tab_title(
 					" "
 						-- .. pane.tab_id + 1
 						-- .. ": "
-						.. basename(pane.cwd)
+						.. string.sub(directory_name, 0, directory_name_len)
 						.. " | "
 						.. filetype_icon
 						.. " "
-						.. basename(vim.api.nvim_buf_get_name(0))
+						.. string.sub(file_name, 0, file_name_len)
 						.. " "
 				)
 			end,
