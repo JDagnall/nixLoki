@@ -58,13 +58,24 @@ in
 				];
 				bash = [shfmt];
 				jinja = [djlint];
-				css = [prettier];
-				html = [prettier];
+				css = [
+					prettier
+					# vscode-css-languageserver
+					pkgs.vscode-langservers-extracted
+				];
+				html = [
+					prettier
+					pkgs.vscode-langservers-extracted
+				];
 				toml = [prettier];
-				markdown = [prettier];
+				markdown = [
+					prettier
+					pkgs.vscode-langservers-extracted
+				];
 				json = [
 					prettier
-					vscode-json-languageserver
+					# vscode-json-languageserver
+					pkgs.vscode-langservers-extracted
 				];
 				javascript = [
 					prettier

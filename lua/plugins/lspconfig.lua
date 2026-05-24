@@ -19,6 +19,8 @@ local lsps = {
 	"rust_analyzer",
 	"zls",
 	"harper_ls",
+	"cssls",
+	"html",
 }
 
 -- nix cats categories corresponding to lsps
@@ -37,6 +39,8 @@ local lsp_cats = {
 	["rust_analyzer"] = "lang.rust",
 	["zls"] = "lang.zig",
 	["harper_ls"] = "lang.english",
+	["cssls"] = "lang.css",
+	["html"] = "lang.html",
 }
 
 local lsp_settings = {
@@ -208,6 +212,9 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		if ncUtil.enableForCategory("cmp", true) then
 			capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+		end
+		if ncUtil.enableForCategory("luasnip", true) then
+			capabilities.textDocument.completion.completionItem.snippetSupport = true
 		end
 		for _, lsp in pairs(lsps) do
 			configure_lsp(lsp, capabilities)
