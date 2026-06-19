@@ -51,7 +51,7 @@ function M.setup(v)
 						print("function requires a table of strings or a dot separated string")
 						return
 					end
-					return vim.tbl_get(tbl, unpack(strtable))
+					return vim.tbl_get(tbl, table.unpack(strtable))
 				end,
 			})
 		end

@@ -18,3 +18,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		vim.keymap.set({ "n", "v" }, "k", "gk", { buffer = true })
 	end,
 })
+
+-- sql
+-- Disable the genuinely psychotic default bindings in sql files
+vim.g.omni_sql_no_default_maps = 1

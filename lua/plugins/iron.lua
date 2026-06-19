@@ -4,6 +4,29 @@ return {
 	opts = function()
 		local view = require("iron.view")
 		local common = require("iron.fts.common")
+		local cr = "\13"
+		local comment = "#"
+
+		-- formats multiline code onto one line, used for nix repl which does not accept
+		-- single line expressions
+		local nix_oneline_format = function(lines, repldef)
+			assert(type(lines) == "table", "Supplied lines is not a table")
+			if repldef.format then
+				return repldef.format(lines, { command = repldef.command })
+			end
+			local new_lines = {}
+			-- filter out comments
+			for _, line in pairs(lines) do
+				if type(line) == "string" then
+					local new_line = string.gsub(line, comment .. ".*$", " ")
+					if #new_line > 0 then
+						table.insert(new_lines, new_line)
+					end
+				end
+			end
+			local formatted_output = table.concat(new_lines, " ")
+			return string.gsub(formatted_output, "%s+", " ") .. cr -- no whitespace
+		end
 		return {
 			config = {
 				scratch_repl = true,
@@ -14,6 +37,10 @@ return {
 						format = common.bracketed_paste_python,
 						block_dividers = { "# %%", "#%%" },
 						env = { PYTHON_BASIC_REPL = "1" },
+					},
+					nix = {
+						command = { "nix", "repl" },
+						format = nix_oneline_format,
 					},
 				},
 				repl_filetype = function(_, ft)

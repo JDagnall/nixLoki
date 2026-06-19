@@ -47,6 +47,18 @@ local lsp_settings = {
 	["lua_ls"] = {
 		settings = {
 			Lua = {
+				runtime = {
+					-- Tell the language server which version of Lua you're using
+					version = "LuaJIT",
+				},
+				workspace = {
+					-- Make the server aware of Neovim runtime files
+					library = vim.api.nvim_get_runtime_file("lua", true),
+				},
+				-- Do not send telemetry data containing a randomized but unique identifier
+				telemetry = {
+					enable = false,
+				},
 				diagnostics = {
 					globals = { "vim", "require", "bufnr" },
 				},
@@ -119,22 +131,22 @@ return {
 				end,
 				options,
 			},
-			{
-				mode = "n",
-				"]d",
-				function()
-					vim.diagnostic.goto_next()
-				end,
-				options,
-			},
-			{
-				mode = "n",
-				"[d",
-				function()
-					vim.diagnostic.goto_prev()
-				end,
-				options,
-			},
+			-- {
+			-- 	mode = "n",
+			-- 	"]d",
+			-- 	function()
+			-- 		vim.diagnostic.goto_next()
+			-- 	end,
+			-- 	options,
+			-- },
+			-- {
+			-- 	mode = "n",
+			-- 	"[d",
+			-- 	function()
+			-- 		vim.lsp.buf.
+			-- 	end,
+			-- 	options,
+			-- },
 			{
 				mode = "n",
 				"<leader>ca",
