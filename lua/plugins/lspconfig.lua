@@ -22,7 +22,7 @@ local lsp_cats = {
 	["harper_ls"] = "lang.english",
 	["cssls"] = "lang.css",
 	["html"] = "lang.html", -- yes its actually just called 'html' in lspconfig
-	["sqlls"] = "lang.sql",
+	["sqls"] = "lang.sql",
 	["sqruff"] = "lang.sql",
 }
 
@@ -72,6 +72,9 @@ local lsp_settings = {
 			cmd = clangd_cmd,
 		}
 	end,
+	["sqruff"] = {
+		root_markers = { ".sqruff", ".sqruff.toml", ".sqruff.ini", "pyproject.toml" },
+	},
 }
 
 local function configure_lsp(lsp, cat, capabilities)
