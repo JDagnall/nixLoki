@@ -1,237 +1,240 @@
 # see :help nixCats.flake.outputs
 inputs: let
-	# inherit (inputs.nixCats) utils;
+    # inherit (inputs.nixCats) utils;
 in
-	{
-		pkgs,
-		# settings,
-		# categories,
-		# extra,
-		# name,
-		# mkPlugin,
-		...
-	}
-	# @packageDef
-	: {
-		# this section is for dependencies that should be available at RUN TIME
-		lspsAndRuntimeDeps = with pkgs; {
-			general = [
-				lua5_1
-			];
-			telescope = [
-				ripgrep
-				# fd
-				# gnumake # dont actually need unless planning to build fzf-native
-				file
-			];
-			treesitter = [
-				tree-sitter # needed for the tree-sitter-cli
-			];
-			snacks = [
-				# chafa
-				delta
-				imagemagick
-			];
-			lang = {
-				lua = [
-					lua-language-server
-					stylua
-				];
-				go = [
-					gopls
-					go
-				];
-				zig = [zig zls];
-				rust = [rustfmt rust-analyzer];
-				nix = [
-					nixd
-					nixfmt
-					alejandra
-				];
-				c = [clang-tools];
-				python = [
-					ruff
-					# python312Packages.python-lsp-server
-					# pyright
-					# python312Packages.jedi-language-server
-					basedpyright
-				];
-				bash = [shfmt];
-				jinja = [djlint];
-				css = [
-					prettier
-					# vscode-css-languageserver
-					pkgs.vscode-langservers-extracted
-				];
-				html = [
-					prettier
-					pkgs.vscode-langservers-extracted
-				];
-				toml = [prettier];
-				markdown = [
-					prettier
-					pkgs.vscode-langservers-extracted
-				];
-				json = [
-					prettier
-					# vscode-json-languageserver
-					pkgs.vscode-langservers-extracted
-				];
-				javascript = [
-					prettier
-					typescript-language-server
-				];
-				english = [
-					harper
-				];
-			};
-		};
+    {
+        pkgs,
+        # settings,
+        # categories,
+        # extra,
+        # name,
+        # mkPlugin,
+        ...
+    }
+    # @packageDef
+    : {
+        # this section is for dependencies that should be available at RUN TIME
+        lspsAndRuntimeDeps = with pkgs; {
+            general = [
+                lua5_1
+            ];
+            telescope = [
+                ripgrep
+                # fd
+                # gnumake # dont actually need unless planning to build fzf-native
+                file
+            ];
+            treesitter = [
+                tree-sitter # needed for the tree-sitter-cli
+            ];
+            snacks = [
+                # chafa
+                delta
+                imagemagick
+            ];
+            lang = {
+                lua = [
+                    lua-language-server
+                    stylua
+                ];
+                go = [
+                    gopls
+                    go
+                ];
+                zig = [zig zls];
+                rust = [rustfmt rust-analyzer];
+                nix = [
+                    nixd
+                    nixfmt
+                    alejandra
+                ];
+                c = [clang-tools];
+                python = [
+                    ruff
+                    # python312Packages.python-lsp-server
+                    # pyright
+                    # python312Packages.jedi-language-server
+                    basedpyright
+                ];
+                bash = [shfmt];
+                jinja = [djlint];
+                css = [
+                    prettier
+                    # vscode-css-languageserver
+                    pkgs.vscode-langservers-extracted
+                ];
+                html = [
+                    prettier
+                    pkgs.vscode-langservers-extracted
+                ];
+                toml = [prettier];
+                markdown = [
+                    prettier
+                    pkgs.vscode-langservers-extracted
+                ];
+                json = [
+                    prettier
+                    # vscode-json-languageserver
+                    pkgs.vscode-langservers-extracted
+                ];
+                javascript = [
+                    prettier
+                    typescript-language-server
+                ];
+                english = [
+                    harper
+                ];
+                sql = [
+                    sqls
+                ];
+            };
+        };
 
-		# lazy doesnt care if these are in startupPlugins or optionalPlugins
-		startupPlugins = with pkgs.vimPlugins; {
-			# should always be turned on
-			general = [
-				lazy-nvim
-			];
-			treesitter = [
-				nvim-treesitter-textobjects
-				# can install all grammars
-				nvim-treesitter.withAllGrammars
-				# if you only want some of the grammars
-				# (nvim-treesitter.withPlugins (
-				#   plugins: with plugins; [
-				#     nix
-				#     lua
-				#   ]
-				# ))
-			];
-			lualine = [
-				lualine-nvim
-				nvim-web-devicons
-				gitsigns-nvim
-			];
-			conform = [conform-nvim];
-			catppuccin = [
-				# sometimes you have to fix some names
-				{
-					plugin = catppuccin-nvim;
-					name = "catppuccin";
-				}
-			];
-			mini-base16 = [
-				# sometimes you have to fix some names
-				{
-					plugin = mini-base16;
-					name = "mini.base16";
-				}
-			];
-			tinted-nvim = [
-				tinted-nvim
-			];
-			mini-indentscope = [
-				# sometimes you have to fix some names
-				{
-					plugin = mini-indentscope;
-					name = "mini.indentscope";
-				}
-			];
-			lspconfig = [nvim-lspconfig];
-			ts-autotag = [nvim-ts-autotag];
-			telescope = [
-				plenary-nvim
-				telescope-fzf-native-nvim
-				telescope-ui-select-nvim
-				telescope-nvim
-			];
-			trouble = [
-				trouble-nvim
-				nvim-web-devicons
-			];
-			harpoon = [
-				# harpoon2
-				{
-					plugin = harpoon2;
-					name = "harpoon";
-				}
-				plenary-nvim
-			];
-			vim-illuminate = [vim-illuminate];
-			netrw = [
-				netrw-nvim
-				nvim-web-devicons
-			];
-			transparent = [transparent-nvim];
-			snacks = [snacks-nvim];
-			cmp = [
-				nvim-cmp
-				cmp-path
-				cmp-buffer
-				cmp-nvim-lsp
-				cmp_luasnip
-			];
-			comment = [
-				{
-					plugin = comment-nvim;
-					name = "Comment.nvim";
-				}
-			];
-			luarocks = [rocks-nvim];
-			autopairs = [nvim-autopairs];
-			smart-splits = [smart-splits-nvim];
-			toggleterm = [toggleterm-nvim];
-			vim-surround = [vim-surround];
-			tmux-navigator = [vim-tmux-navigator];
-			iron = [iron-nvim];
-			undotree = [undotree];
-			vim-fugitive = [vim-fugitive];
-			yanky = [
-				yanky-nvim
-			];
-			dashboard = [
-				dashboard-nvim
-				nvim-web-devicons
-			];
-			feline = [nvim-web-devicons]; # is not in nix, diabled anyway, could use git call to get it
-			molten = [molten-nvim];
-			wezterm = [
-				wezterm-nvim
-				nvim-web-devicons
-			];
-			image = [
-				image-nvim
-				rocks-nvim
-			];
-			jupytext = [jupytext-nvim];
-			noice = [
-				noice-nvim
-				nvim-notify
-				nui-nvim
-			];
-			luasnip = [
-				luasnip
-			];
-		};
+        # lazy doesnt care if these are in startupPlugins or optionalPlugins
+        startupPlugins = with pkgs.vimPlugins; {
+            # should always be turned on
+            general = [
+                lazy-nvim
+            ];
+            treesitter = [
+                nvim-treesitter-textobjects
+                # can install all grammars
+                nvim-treesitter.withAllGrammars
+                # if you only want some of the grammars
+                # (nvim-treesitter.withPlugins (
+                #   plugins: with plugins; [
+                #     nix
+                #     lua
+                #   ]
+                # ))
+            ];
+            lualine = [
+                lualine-nvim
+                nvim-web-devicons
+                gitsigns-nvim
+            ];
+            conform = [conform-nvim];
+            catppuccin = [
+                # sometimes you have to fix some names
+                {
+                    plugin = catppuccin-nvim;
+                    name = "catppuccin";
+                }
+            ];
+            mini-base16 = [
+                # sometimes you have to fix some names
+                {
+                    plugin = mini-base16;
+                    name = "mini.base16";
+                }
+            ];
+            tinted-nvim = [
+                tinted-nvim
+            ];
+            mini-indentscope = [
+                # sometimes you have to fix some names
+                {
+                    plugin = mini-indentscope;
+                    name = "mini.indentscope";
+                }
+            ];
+            lspconfig = [nvim-lspconfig];
+            ts-autotag = [nvim-ts-autotag];
+            telescope = [
+                plenary-nvim
+                telescope-fzf-native-nvim
+                telescope-ui-select-nvim
+                telescope-nvim
+            ];
+            trouble = [
+                trouble-nvim
+                nvim-web-devicons
+            ];
+            harpoon = [
+                # harpoon2
+                {
+                    plugin = harpoon2;
+                    name = "harpoon";
+                }
+                plenary-nvim
+            ];
+            vim-illuminate = [vim-illuminate];
+            netrw = [
+                netrw-nvim
+                nvim-web-devicons
+            ];
+            transparent = [transparent-nvim];
+            snacks = [snacks-nvim];
+            cmp = [
+                nvim-cmp
+                cmp-path
+                cmp-buffer
+                cmp-nvim-lsp
+                cmp_luasnip
+            ];
+            comment = [
+                {
+                    plugin = comment-nvim;
+                    name = "Comment.nvim";
+                }
+            ];
+            luarocks = [rocks-nvim];
+            autopairs = [nvim-autopairs];
+            smart-splits = [smart-splits-nvim];
+            toggleterm = [toggleterm-nvim];
+            vim-surround = [vim-surround];
+            tmux-navigator = [vim-tmux-navigator];
+            iron = [iron-nvim];
+            undotree = [undotree];
+            vim-fugitive = [vim-fugitive];
+            yanky = [
+                yanky-nvim
+            ];
+            dashboard = [
+                dashboard-nvim
+                nvim-web-devicons
+            ];
+            feline = [nvim-web-devicons]; # is not in nix, diabled anyway, could use git call to get it
+            molten = [molten-nvim];
+            wezterm = [
+                wezterm-nvim
+                nvim-web-devicons
+            ];
+            image = [
+                image-nvim
+                rocks-nvim
+            ];
+            jupytext = [jupytext-nvim];
+            noice = [
+                noice-nvim
+                nvim-notify
+                nui-nvim
+            ];
+            luasnip = [
+                luasnip
+            ];
+        };
 
-		# lazy doesnt care if these are in startupPlugins or optionalPlugins
-		optionalPlugins = {};
+        # lazy doesnt care if these are in startupPlugins or optionalPlugins
+        optionalPlugins = {};
 
-		# shared libraries to be added to LD_LIBRARY_PATH variable. available to nvim runtime
-		sharedLibraries = {
-			# general = with pkgs; [ ];
-		};
+        # shared libraries to be added to LD_LIBRARY_PATH variable. available to nvim runtime
+        sharedLibraries = {
+            # general = with pkgs; [ ];
+        };
 
-		# at RUN TIME for plugins. Will be available to path within neovim terminal
-		environmentVariables = {};
+        # at RUN TIME for plugins. Will be available to path within neovim terminal
+        environmentVariables = {};
 
-		# https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/setup-hooks/make-wrapper.sh
-		extraWrapperArgs = {};
+        # https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/setup-hooks/make-wrapper.sh
+        extraWrapperArgs = {};
 
-		# lists of the functions you would have passed to
-		# python.withPackages or lua.withPackages
+        # lists of the functions you would have passed to
+        # python.withPackages or lua.withPackages
 
-		# get the path to this python environment: vim.g.python3_host_prog
-		# or run from nvim terminal via :!<packagename>-python3
-		python3.libraries = {};
-		# populates $LUA_PATH and $LUA_CPATH
-		extraLuaPackages = {};
-	}
+        # get the path to this python environment: vim.g.python3_host_prog
+        # or run from nvim terminal via :!<packagename>-python3
+        python3.libraries = {};
+        # populates $LUA_PATH and $LUA_CPATH
+        extraLuaPackages = {};
+    }

@@ -21,6 +21,7 @@ local lsps = {
 	"harper_ls",
 	"cssls",
 	"html",
+	"sqls",
 }
 
 -- nix cats categories corresponding to lsps
@@ -40,7 +41,8 @@ local lsp_cats = {
 	["zls"] = "lang.zig",
 	["harper_ls"] = "lang.english",
 	["cssls"] = "lang.css",
-	["html"] = "lang.html",
+	["html"] = "lang.html", -- yes its actually just called 'html' in lspconfig
+	["sqls"] = "lang.sql",
 }
 
 local lsp_settings = {
