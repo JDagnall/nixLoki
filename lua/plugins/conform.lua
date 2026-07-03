@@ -24,6 +24,7 @@ local ft_by_formatter_and_cat = {
 	markdown = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.markdown", true) },
 	json = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.json", true) },
 	javascript = { formatters = { "prettier" }, enabled = ncUtil.enableForCategory("lang.javascript", true) },
+	sql = { formatters = { "sqruff" }, enabled = ncUtil.enableForCategory("lang.sql", true) },
 }
 local enabled_fts = {}
 

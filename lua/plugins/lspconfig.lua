@@ -3,27 +3,6 @@ local ncUtil = require("nixCatsUtils")
 -- enableForCategory: checks a category specification in the nixCats nix config
 -- or returns the specified default value if not on a nix system
 
-local lsps = {
-	"nixd",
-	"lua_ls",
-	"gopls",
-	"clangd",
-	"ruff",
-	-- one day I will actually like a python lsp
-	--    "pyright",
-	--    "pylsp",
-	-- "jedi_language_server",
-	"basedpyright",
-	"ts_ls",
-	"jsonls",
-	"rust_analyzer",
-	"zls",
-	"harper_ls",
-	"cssls",
-	"html",
-	"sqls",
-}
-
 -- nix cats categories corresponding to lsps
 local lsp_cats = {
 	["nixd"] = "lang.nix",
@@ -31,10 +10,11 @@ local lsp_cats = {
 	["gopls"] = "lang.go",
 	["clangd"] = "lang.c",
 	["ruff"] = "lang.python",
+	-- one day i will like a python lsp
 	-- ["jedi_language_server"] = "lang.python",
-	["basedpyright"] = "lang.python",
 	-- ["pyright"] = "lang.python",
 	-- ["pylsp"] = "lang.python",
+	["basedpyright"] = "lang.python",
 	["ts_ls"] = "lang.javascript",
 	["jsonls"] = "lang.json",
 	["rust_analyzer"] = "lang.rust",
@@ -42,7 +22,8 @@ local lsp_cats = {
 	["harper_ls"] = "lang.english",
 	["cssls"] = "lang.css",
 	["html"] = "lang.html", -- yes its actually just called 'html' in lspconfig
-	["sqls"] = "lang.sql",
+	["sqlls"] = "lang.sql",
+	["sqruff"] = "lang.sql",
 }
 
 local lsp_settings = {
@@ -93,9 +74,9 @@ local lsp_settings = {
 	end,
 }
 
-local function configure_lsp(lsp, capabilities)
+local function configure_lsp(lsp, cat, capabilities)
 	-- if the category is disable in nixCats
-	if lsp_cats[lsp] ~= nil and not ncUtil.enableForCategory(lsp_cats[lsp], true) then
+	if not ncUtil.enableForCategory(cat, true) then
 		return
 	end
 	local settings = lsp_settings[lsp] or {}
@@ -230,8 +211,8 @@ return {
 		if ncUtil.enableForCategory("luasnip", true) then
 			capabilities.textDocument.completion.completionItem.snippetSupport = true
 		end
-		for _, lsp in pairs(lsps) do
-			configure_lsp(lsp, capabilities)
+		for lsp, cat in pairs(lsp_cats) do
+			configure_lsp(lsp, cat, capabilities)
 		end
 	end,
 }
