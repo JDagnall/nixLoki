@@ -1,0 +1,16 @@
+snippet nixos_module "NixOS module boilerplate"
+    { lib, config, ... }:
+    let
+        cfg = config.myConfig.${1:service.example-service};
+    in
+    {
+        options = {
+            myConfig.${1} = {
+                enable = lib.mkEnableOption "Enable ${2:example-service}";
+            };
+        };
+
+        config = cfg.enable {
+            ${1} = {};
+        };
+    }

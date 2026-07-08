@@ -1,0 +1,21 @@
+snippet print_table "Lua function to recursively print a table."
+    local function print_table(table, opts)
+        local indent = opts.indent or 0
+        local name = opts.name or ""
+        if type(table) ~= "table" then
+            return
+        end
+        if name ~= nil then
+            print(string.rep("\t", indent), name, ": {")
+        else
+            print(string.rep("\t", indent), "{")
+        end
+        for k, v in pairs(table) do
+            if type(v) == "table" then
+                print_table(v, { indent = indent + 1, name = k })
+            else
+                print(string.rep("\t", indent + 1), k, ": ", v)
+            end
+        end
+        print(string.rep("\t", indent), "}")
+    end
