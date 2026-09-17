@@ -117,7 +117,7 @@ return {
 						["<C-n>"] = actions.move_selection_next,
 						["<C-u>"] = actions.preview_scrolling_up,
 						["<C-d>"] = actions.preview_scrolling_down,
-						["<C-\\>"] = actions.file_vsplit,
+						["<C-]>"] = actions.file_vsplit,
 					},
 					n = {
 						["<C-c>"] = actions.close,
@@ -125,7 +125,7 @@ return {
 						["<C-d>"] = actions.preview_scrolling_down,
 						["<C-p>"] = actions.move_selection_previous,
 						["<C-n>"] = actions.move_selection_next,
-						["<C-\\>"] = actions.file_vsplit,
+						["<C-]>"] = actions.file_vsplit,
 					},
 				},
 			},

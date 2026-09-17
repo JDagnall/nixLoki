@@ -75,4 +75,4 @@ vim.g.netrw_winsize = 30 -- 30%
 -- vim.opt.messagesopt = "wait:1000,history:500"
 vim.opt.cmdheight = 1
 -- disable deprecated messages
-vim.deprecate = function() end
+-- vim.deprecate = function() end

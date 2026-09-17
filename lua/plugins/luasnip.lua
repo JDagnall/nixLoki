@@ -5,7 +5,15 @@ return {
 	enabled = require("nixCatsUtils").enableForCategory("luasnip", true),
 	config = function()
 		local ls = require("luasnip")
-		require("luasnip.loaders.from_snipmate").lazy_load({ paths = "./lua/snippets/snipmate" })
+		local ncUtil = require("nixCatsUtils")
+		local get_config_path = function()
+			if ncUtil.isNixCats then
+				local nc = require("nixCats")
+				return nc.configDir -- get the nix store config path if using nixCats (non test package)
+			end
+			return vim.fn.stdpath("config")
+		end
+		require("luasnip.loaders.from_snipmate").lazy_load({ paths = get_config_path() .. "/lua/snippets/snipmate" })
 		ls.setup()
 	end,
 	keys = function()
@@ -24,6 +32,7 @@ return {
 				end,
 			},
 			{
+				-- rebind for ctrl C because snippets dont necesarily respect <Esc>
 				mode = { "i", "s" },
 				"<C-c>",
 				function()

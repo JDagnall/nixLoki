@@ -49,7 +49,7 @@ local lsp_settings = {
 		},
 	},
 	["harper_ls"] = {
-		filetypes = { "markdown", "text" },
+		filetypes = { "markdown" },
 		settings = {
 			["harper-ls"] = {
 				dialect = "Australian",
@@ -76,6 +76,40 @@ local lsp_settings = {
 		root_markers = { ".sqruff", ".sqruff.toml", ".sqruff.ini", "pyproject.toml" },
 	},
 }
+
+local lsp_log_size_ideal = 10 * 1024 * 1024 -- mb
+local lsp_log_size_thresh = 20 * 1024 * 1024 -- mb
+
+local function get_lsp_log_size()
+	local logfile = io.open(vim.lsp.log.get_filename())
+	if logfile == nil then
+		return
+	end
+	local filesize = logfile:seek("end")
+	logfile:close()
+	return filesize
+end
+
+local function shrink_lsp_log(size)
+	local logfile = io.open(vim.lsp.log.get_filename(), "r")
+	if logfile == nil then
+		return
+	end
+	local filesize = logfile:seek("end")
+	if filesize <= size then
+		logfile:close()
+		return
+	end
+	logfile:seek("set", filesize - size)
+	local partial_line = logfile:read("*l") -- reads out till the next newline
+	local remaining_lines = logfile:read("*a") -- rest of the file
+	logfile:close()
+	logfile = io.open(vim.lsp.log.get_filename(), "w+b")
+	if logfile then
+		logfile:write(remaining_lines)
+		logfile:close()
+	end
+end
 
 local function configure_lsp(lsp, cat, capabilities)
 	-- if the category is disable in nixCats
@@ -209,13 +243,19 @@ return {
 		-- run configure_lsp for every lsp in list
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		if ncUtil.enableForCategory("cmp", true) then
-			capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 		end
 		if ncUtil.enableForCategory("luasnip", true) then
 			capabilities.textDocument.completion.completionItem.snippetSupport = true
 		end
 		for lsp, cat in pairs(lsp_cats) do
 			configure_lsp(lsp, cat, capabilities)
+		end
+		vim.lsp.log.set_level(vim.log.levels.WARN)
+		vim.lsp.log.set_format_func(vim.inspect)
+
+		if get_lsp_log_size() > lsp_log_size_thresh then
+			shrink_lsp_log(lsp_log_size_ideal)
 		end
 	end,
 }

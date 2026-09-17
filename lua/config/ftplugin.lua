@@ -22,3 +22,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 -- sql
 -- Disable the genuinely psychotic default bindings in sql files
 vim.g.omni_sql_no_default_maps = 1
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = "nix",
+	callback = function(args)
+		vim.opt_local.cindent = false
+		vim.opt_local.indentexpr = ""
+		-- vim.opt_local.smartindent = false
+	end,
+})
