@@ -55,6 +55,7 @@ inputs: let
         luasnip = true;
         wezterm = true;
         gitsigns = true;
+        render-markdown = true;
 
         # langs
         lang.lua = true;

@@ -214,6 +214,9 @@ in
             luasnip = [
                 luasnip
             ];
+            render-markdown = [
+                render-markdown-nvim
+            ];
         };
 
         # lazy doesnt care if these are in startupPlugins or optionalPlugins
