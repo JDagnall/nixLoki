@@ -216,6 +216,8 @@ in
             ];
             render-markdown = [
                 render-markdown-nvim
+                # for latex rendering
+                pkgs.python314Packages.pylatexenc
             ];
         };
 
