@@ -9,6 +9,7 @@ local get_config_path = function()
 	end
 	return vim.fn.stdpath("config")
 end
+
 -- img file to use chafa to ascii art there are 4 pictures in the directory
 -- ascii are is computed and saved in .ascii files because sometimes chafa can take a sec
 -- the chafa command is 'chafa -C true --symbols vhalf -f symbols -s 60x30 -O 9 --align left [img]'
@@ -193,6 +194,30 @@ return {
 				modified = "m",
 				regex = { icon = "R", value = false },
 			},
+			sources = {
+				files = {
+					actions = {
+						["harpoon_add"] = function(picker, _)
+							if not ncUtil.enableForCategory("harpoon", true) then
+								vim.notify("Harpoon is not installed / enabled.")
+								return
+							end
+							local selected = picker:selected({ fallback = true })
+							if not selected or #selected == 0 then
+								return
+							end
+							local harpoon = require("harpoon")
+							for _, entry in ipairs(selected) do
+								local file_path = entry.file or entry.text
+								if file_path then
+									harpoon:list():add({ value = file_path })
+									vim.notify("Added to Harpoon: " .. file_path)
+								end
+							end
+						end,
+					},
+				},
+			},
 			win = {
 				input = {
 					keys = {
@@ -203,11 +228,14 @@ return {
 						["<C-J>"] = { "preview_scroll_down", mode = { "i", "n" } },
 						["<C-K>"] = { "preview_scroll_up", mode = { "i", "n" } },
 						["<C-L>"] = { "preview_scroll_right", mode = { "i", "n" } },
+						["<C-a>"] = { "harpoon_add", mode = { "i", "n" }, desc = "Add to Harpoon" },
+						["<C-]>"] = { "edit_vsplit", mode = { "i", "n" } },
 					},
 				},
 				list = {
 					keys = {
 						["<C-c>"] = { "cancel", mode = { "i", "n" } },
+						["<C-a>"] = { "harpoon_add", mode = { "i", "n" }, desc = "Add to Harpoon" },
 						-- ["<C-U>"] = { "preview_scroll_up", mode = { "i", "n" } },
 						-- ["<C-D>"] = { "preview_scroll_down", mode = { "i", "n" } },
 					},
