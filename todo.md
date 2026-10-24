@@ -9,6 +9,9 @@
 - Move away from lazy.nvim because I'm not using most of its features, probably to vim.
   pack once I've updated to nvim 0.12, or to BirdeeHub/lze
 - update to nvim 0.12/13
+- Nixd, can be configured to see option configured in the current flake / home-manger etc.
+  Some flake specific config is needed also I think.
+- Atlas.nvim is PR / Issue tracker in NVIM. At some point I am gonna want that.
 
 ## Fix
 

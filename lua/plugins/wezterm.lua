@@ -1,3 +1,5 @@
+-- TODO: This plugin is unmaintained, I could instead, just do this myself with
+-- calls to the wezterm cli
 local ncUtil = require("nixCatsUtils")
 
 local function basename(s)

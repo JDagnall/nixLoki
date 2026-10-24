@@ -56,6 +56,7 @@ inputs: let
         wezterm = true;
         gitsigns = true;
         render-markdown = true;
+        pi-nvim = true;
 
         # langs
         lang.lua = true;

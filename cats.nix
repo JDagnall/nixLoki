@@ -219,6 +219,11 @@ in
                 # for latex rendering
                 pkgs.python314Packages.pylatexenc
             ];
+            pi-nvim = [
+                # not installing pi along with it as installations for this thing should be sandboxed
+                # mine for example is in a bwrap wrapper, I could pass it as an extra but I wont rn
+                pi-nvim
+            ];
         };
 
         # lazy doesnt care if these are in startupPlugins or optionalPlugins

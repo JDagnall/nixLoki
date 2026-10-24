@@ -43,6 +43,7 @@ vim.filetype.add({
 	},
 })
 
+-- for windows / wsl
 -- if the clipboard command cannot be found, and clip.exe + powershell.exe is present then use it
 if vim.g.clipboard == nil and vim.fn.executable("clip.exe") == 1 and vim.fn.executable("powershell.exe") then
 	vim.g.clipboard = {

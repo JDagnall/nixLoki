@@ -1,0 +1,6 @@
+snippet nixos_module "flake-parts dendritic module boilerplate"
+    { lib, inputs, ... }: {
+        flake.modules.${1:namespace}.${2:name} = {pkgs, config, ...}: {
+
+        };
+    }

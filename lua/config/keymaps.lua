@@ -68,3 +68,7 @@ vim.keymap.set("v", "<", "<gv")
 -- vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>")
 -- potentially useful for clearing notifications
 -- vim.keymap.set("", "<ESC>", "<ESC>:noh<CR>")
+-- copy the filepath (to system clipboard)
+vim.keymap.set("n", "<leader>pc", function()
+	vim.fn.setreg("+", vim.fn.expand("%")) -- write to clippoard
+end)
