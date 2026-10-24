@@ -1,13 +1,14 @@
 local nixCats = require("nixCats")
 local piBinary = nixCats.extra("pi-binary") or "pi"
+local piInstalled = true
 -- If the command cannot be found
-if os.execute("command -v " .. piBinary) ~= 0 then
-	return {}
+if not vim.fn.executable(piBinary) then
+	piInstalled = false
 end
 -- check the program is in path
 return {
 	"pablopunk/pi.nvim",
-	enabled = require("nixCatsUtils").enableForCategory("pi-nvim", true),
+	enabled = piInstalled and require("nixCatsUtils").enableForCategory("pi-nvim", true),
 	lazy = true,
 	opts = {
 		-- binary = "", -- this should really be an option in nicCats Extra
@@ -19,7 +20,7 @@ return {
 		-- extensions = {},
 	},
 	keys = {
-		{ "<leader>ai", "<cmd>PiAsk<CR>", mode = { "n" }, desc = "Feed the entire buffer to pi." },
-		{ "<leader>ai", "<cmd>PiAskSelection<CR>", mode = { "v" }, desc = "Feed the visual selection to pi." },
+		{ "<leader>pi", "<cmd>PiAsk<CR>", mode = { "n" }, desc = "Feed the entire buffer to pi." },
+		{ "<leader>pi", "<cmd>PiAskSelection<CR>", mode = { "v" }, desc = "Feed the visual selection to pi." },
 	},
 }
